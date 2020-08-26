@@ -1,13 +1,23 @@
 <resources>
-    <string name="app_name">AppClinica</string>
+    <string name="app_name">Por Tu Salud</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_close">Cerrar Sesión</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_home">Inicio</string>
+    <string name="menu_campus">Sedes</string>
+    <string name="menu_contact">Contacto</string>
+    <string name="menu_item1">Comunicación</string>
+    <string name="menu_share">Compartir</string>
+    <string name="menu_send">Enviar</string>
+    <string name="menu_close">Cerrar Sesión</string>
+
+    <!-- Bottom Navigation -->
+    <string name="title_home">Inicio</string>
+    <string name="title_registry">Cita</string>
+    <string name="title_report">Historial</string>
+
 </resources>

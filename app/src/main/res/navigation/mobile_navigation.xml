@@ -12,14 +12,51 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.example.appclinica.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_campus"
+        android:name="com.example.appclinica.ui.campus.CampusFragment"
+        android:label="@string/menu_campus"
+        tools:layout="@layout/fragment_campus" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.appclinica.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_contact"
+        android:name="com.example.appclinica.ui.contact.ContactFragment"
+        android:label="@string/menu_contact"
+        tools:layout="@layout/fragment_contact" />
+
+    <fragment
+        android:id="@+id/nav_send"
+        android:name="com.example.appclinica.ui.send.SendFragment"
+        android:label="@string/menu_send"
+        tools:layout="@layout/fragment_contact" />
+
+    <fragment
+        android:id="@+id/nav_share"
+        android:name="com.example.appclinica.ui.share.ShareFragment"
+        android:label="@string/menu_share"
+        tools:layout="@layout/fragment_contact" />
+
+    <fragment
+        android:id="@+id/nav_session"
+        android:name="com.example.appclinica.ui.session.SessionFragment"
+        android:label="@string/menu_share"
+        tools:layout="@layout/fragment_session" />
+
+    <fragment
+        android:id="@+id/bottom_home"
+        tools:layout="@layout/fragment_home"
+        android:label="@string/title_home"
+        android:name="com.example.appclinica.ui.home.HomeFragment"/>
+
+    <fragment
+        android:id="@+id/bottom_registry"
+        tools:layout="@layout/fragment_registry"
+        android:label="@string/title_registry"
+        android:name="com.example.appclinica.ui.registry.RegistryFragment"/>
+
+    <fragment
+        android:id="@+id/bottom_report"
+        tools:layout="@layout/fragment_report"
+        android:label="@string/title_report"
+        android:name="com.example.appclinica.ui.report.ReportFragment"/>
+
 </navigation>
