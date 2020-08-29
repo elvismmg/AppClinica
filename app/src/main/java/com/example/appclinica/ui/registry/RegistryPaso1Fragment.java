@@ -14,17 +14,17 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.appclinica.R;
 
-public class RegistryFragment extends Fragment {
+public class RegistryPaso1Fragment extends Fragment {
 
-    private RegistryViewModel registryViewModel;
+    private RegistryPaso1ViewModel registryPaso1ViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        registryViewModel =
-                ViewModelProviders.of(this).get(RegistryViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_registry, container, false);
+        registryPaso1ViewModel =
+                ViewModelProviders.of(this).get(RegistryPaso1ViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_registry_paso1, container, false);
         final TextView textView = root.findViewById(R.id.text_registry);
-        registryViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        registryPaso1ViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

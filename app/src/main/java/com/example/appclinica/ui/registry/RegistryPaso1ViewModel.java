@@ -4,11 +4,11 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class RegistryViewModel extends ViewModel {
+public class RegistryPaso1ViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public RegistryViewModel() {
+    public RegistryPaso1ViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("This is notifications fragment");
     }

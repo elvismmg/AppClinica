@@ -49,9 +49,9 @@
 
     <fragment
         android:id="@+id/bottom_registry"
-        tools:layout="@layout/fragment_registry"
+        tools:layout="@layout/fragment_registry_paso1"
         android:label="@string/title_registry"
-        android:name="com.example.appclinica.ui.registry.RegistryFragment"/>
+        android:name="com.example.appclinica.ui.registry.RegistryPaso1Fragment"/>
 
     <fragment
         android:id="@+id/bottom_report"
