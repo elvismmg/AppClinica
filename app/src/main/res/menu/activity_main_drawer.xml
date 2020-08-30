@@ -34,7 +34,11 @@
     <item android:title="">
         <menu>
             <item
-                android:title="@string/menu_close"
+                android:title="@string/menu_myinfo"
+                android:icon="@drawable/ic_menu_share"
+                android:id="@+id/nav_myinfo"/>
+            <item
+                android:title="@string/menu_closesession"
                 android:icon="@drawable/ic_menu_share"
                 android:id="@+id/nav_session"/>
         </menu>

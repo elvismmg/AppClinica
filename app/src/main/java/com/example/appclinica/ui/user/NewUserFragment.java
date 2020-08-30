@@ -25,18 +25,18 @@ import com.example.appclinica.ui.home.LoginFragment;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class ChangeUserFragment extends Fragment {
+public class NewUserFragment extends Fragment {
 
-    private ChangeUserViewModel mViewModel;
+    private NewUserViewModel mViewModel;
 
-    public static ChangeUserFragment newInstance() {
-        return new ChangeUserFragment();
+    public static NewUserFragment newInstance() {
+        return new NewUserFragment();
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_change_user, container, false);
+        View view = inflater.inflate(R.layout.fragment_new_user, container, false);
 
         loadSexComboBox(view);
         loadBirthdate(view);
@@ -48,7 +48,7 @@ public class ChangeUserFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(ChangeUserViewModel.class);
+        mViewModel = ViewModelProviders.of(this).get(NewUserViewModel.class);
         // TODO: Use the ViewModel
     }
 
@@ -86,12 +86,20 @@ public class ChangeUserFragment extends Fragment {
     }
 
     private  void loadButtonEvents(View view) {
+        Button btnBack = (Button) view.findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getParentFragmentManager().beginTransaction().replace(R.id.login_layout, new LoginFragment()).commit();
+            }
+        });
+
         Button btnSave = (Button) view.findViewById(R.id.btnSave);
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 //                getParentFragmentManager().beginTransaction().replace(R.id.login_layout, new LoginFragment()).commit();
-                Toast.makeText(getContext(), R.string.changeUser_msgSave, Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), R.string.newUser_msgSave, Toast.LENGTH_LONG).show();
             }
         });
     }

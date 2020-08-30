@@ -1,13 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.home.LoginFragment">
 
-    <TextView
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_marginTop="50dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+        android:layout_height="wrap_content"
+        android:src="@drawable/logosmall" />
 
-</FrameLayout>
+    <TextView android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorlabels"
+        android:layout_marginTop="50dp"
+        android:text="@string/login_username"/>
+
+    <EditText android:layout_width="fill_parent"
+        android:id="@+id/tbUsername"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="20dp"
+        android:singleLine="true"/>
+
+    <TextView android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorlabels"
+        android:text="@string/login_password"/>
+
+    <EditText
+        android:id="@+id/tbPassword"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:inputType="textPassword"
+        android:singleLine="true" />
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/login_login" />
+
+    <TextView
+        android:id="@+id/lnkForgotPassword"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:gravity="center"
+        android:linksClickable="true"
+        android:text="@string/login_forgot"
+        android:textColor="@color/colorLinks"
+        android:textSize="15dip" />
+
+    <TextView
+        android:id="@+id/lnkRegistar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="40dp"
+        android:autoLink="all"
+        android:clickable="true"
+        android:gravity="center"
+        android:linksClickable="true"
+        android:text="@string/login_register"
+        android:textColor="@color/colorLinks"
+        android:textSize="20dip"
+        android:textStyle="bold" />
+</LinearLayout>
