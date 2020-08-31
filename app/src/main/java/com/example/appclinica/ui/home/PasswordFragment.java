@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.appclinica.R;
 
@@ -25,7 +27,9 @@ public class PasswordFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_password, container, false);
+        View view =  inflater.inflate(R.layout.fragment_password, container, false);
+        loadButtonEvents(view);
+        return view;
     }
 
     @Override
@@ -35,4 +39,22 @@ public class PasswordFragment extends Fragment {
         // TODO: Use the ViewModel
     }
 
+    private  void loadButtonEvents(View view) {
+        Button btnBack = (Button) view.findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getParentFragmentManager().beginTransaction().replace(R.id.login_layout, new LoginFragment()).commit();
+            }
+        });
+
+        Button btnSave = (Button) view.findViewById(R.id.btnSave);
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                getParentFragmentManager().beginTransaction().replace(R.id.login_layout, new LoginFragment()).commit();
+                Toast.makeText(getContext(), R.string.newUser_msgSend, Toast.LENGTH_LONG).show();
+            }
+        });
+    }
 }

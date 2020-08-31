@@ -43,11 +43,23 @@
         android:label="@string/menu_share"
         tools:layout="@layout/fragment_contact" />
 
+<!--    <fragment-->
+<!--        android:id="@+id/nav_session"-->
+<!--        android:name="com.example.appclinica.ui.session.SessionFragment"-->
+<!--        android:label="@string/menu_share"-->
+<!--        tools:layout="@layout/fragment_session" />-->
+
     <fragment
+        android:id="@+id/nav_myinfo"
+        android:name="com.example.appclinica.ui.user.ChangeUserFragment"
+        android:label="@string/menu_myinfo"
+        tools:layout="@layout/fragment_change_user"/>
+
+    <activity
         android:id="@+id/nav_session"
-        android:name="com.example.appclinica.ui.session.SessionFragment"
-        android:label="@string/menu_share"
-        tools:layout="@layout/fragment_session" />
+        android:name="com.example.appclinica.LoginActivity"
+        android:label="@string/menu_closesession"
+        tools:layout="@layout/activity_login"/>
 
     <fragment
         android:id="@+id/bottom_home"
