@@ -15,6 +15,8 @@
     <string name="menu_share">Compartir</string>
     <string name="menu_send">Enviar</string>
     <string name="menu_close">Cerrar Sesión</string>
+    <string name="menu_myinfo">Datos</string>
+    <string name="menu_closesession">Cerrar Sesión</string>
 
     <!-- Bottom Navigation -->
     <string name="title_home">Inicio</string>
