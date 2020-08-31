@@ -31,4 +31,74 @@
     <string name="hora">Hora</string>
     <string name="tipo_cita">Tipo de Cita</string>
 
+    <!-- Login activity -->
+    <string name="login_username">Usuario</string>
+    <string name="login_password">Contraseña</string>
+    <string name="login_login">Ingresar</string>
+    <string name="login_register">Registrar</string>
+    <string name="login_forgot">Olvidé contraseña</string>
+
+    <!-- Login new user -->
+    <string name="newUser_Title">Registrar Nuevo Paciente</string>
+    <string name="newUser_DocumentNumber">Número de Documento</string>
+    <string name="newUser_FirstName">Nombres</string>
+    <string name="newUser_LastName">Apellidos</string>
+    <string name="newUser_Sex">Sexo</string>
+    <string name="newUser_Birthdate">Fecha Nacimiento</string>
+    <string name="newUser_PhoneNumber">Teléfono</string>
+    <string name="newUser_eMail">Correo</string>
+    <string name="newUser_BloodType">Tipo de Sangre</string>
+    <string name="newUser_Password">Contraseña</string>
+    <string name="newUser_btnBack">Regresar</string>
+    <string name="newUser_btnSave">Grabar</string>
+
+    <string name="newUser_msgSave">Se creó el paciente</string>
+
+    <string name="newUser_HintDocumentNumber">Ingresar el número de documento</string>
+    <string name="newUser_HintFirstName">Ingresar su nombre</string>
+    <string name="newUser_HintLastName">Ingresar su apellido</string>
+    <string name="newUser_HintSex">Seleccione su sexo</string>
+    <string name="newUser_HintBirthdate">Ingresar su fecha de nacimiento</string>
+    <string name="newUser_HintPhoneNumber">Ingresar su teléfono</string>
+    <string name="newUser_HinteMail">Ingresar su correo</string>
+    <string name="newUser_HintBloodType">Ingresar su tipo de sangre</string>
+    <string name="newUser_HintPassword">Ingresar su contraseña</string>
+
+
+
+    <!-- Update user -->
+    <string name="changeUser_Title">Actualizar Datos del Paciente</string>
+    <string name="changeUser_DocumentNumber">Número de Documento</string>
+    <string name="changeUser_FirstName">Nombres</string>
+    <string name="changeUser_LastName">Apellidos</string>
+    <string name="changeUser_Sex">Sexo</string>
+    <string name="changeUser_Birthdate">Fecha Nacimiento</string>
+    <string name="changeUser_PhoneNumber">Teléfono</string>
+    <string name="changeUser_eMail">Correo</string>
+    <string name="changeUser_BloodType">Tipo de Sangre</string>
+    <string name="changeUser_Password">Contraseña</string>
+    <string name="changeUser_btnBack">Regresar</string>
+    <string name="changeUser_btnSave">Grabar</string>
+
+    <string name="changeUser_msgSave">Se actualizaron los datos del paciente</string>
+
+    <!-- Login password recovery -->
+    <string name="passwordRecovery_Title">Recuperar contraseña</string>
+    <string name="passwordRecovery_Username">Usuario</string>
+    <string name="passwordRecovery_btnBack">Regresar</string>
+    <string name="passwordRecovery_btnSend">Enviar</string>
+    <string name="newUser_msgSend">Revise su correo electrónico</string>
+
+    <!-- Bottom Navigation -->
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+
+
 </resources>
