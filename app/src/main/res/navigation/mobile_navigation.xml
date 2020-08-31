@@ -12,10 +12,10 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_campus"
-        android:name="com.example.appclinica.ui.campus.CampusFragment"
+        android:id="@+id/nav_centers"
+        android:name="com.example.appclinica.ui.centers.CentersFragment"
         android:label="@string/menu_campus"
-        tools:layout="@layout/fragment_campus" />
+        tools:layout="@layout/fragment_centers" />
 
     <fragment
         android:id="@+id/nav_contact"

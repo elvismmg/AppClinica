@@ -1,15 +1,21 @@
 package com.example.appclinica;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 
+import com.example.appclinica.ui.centers.CentersFragment;
+import com.example.appclinica.ui.home.HomeFragment;
+import com.example.appclinica.ui.home.LoginFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.annotation.NonNull;
 import androidx.core.view.GravityCompat;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -18,7 +24,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements  NavigationView.OnNavigationItemSelectedListener {
 
     private AppBarConfiguration mAppBarConfiguration;
     private NavController navController;
@@ -59,8 +65,10 @@ public class MainActivity extends AppCompatActivity {
         initToolbar();
         initFab();
         initNavigation();
+//        navigationView.setNavigationItemSelectedListener(this);
         //showBottomNavigation(false);
-
+        //HomeFragment homeFragment = new HomeFragment();
+        //getSupportFragmentManager().beginTransaction().add(R.id.layout_main, homeFragment).commit();
     }
 
     @Override
@@ -125,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_campus, R.id.nav_contact,
+                R.id.nav_home, R.id.nav_centers, R.id.nav_contact,
                 R.id.nav_share, R.id.nav_send, R.id.nav_session,
                 R.id.bottom_home, R.id.bottom_registry, R.id.bottom_report)
                 .setDrawerLayout(drawer)
@@ -137,4 +145,18 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(bottomNavView, navController);
     }
 
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+//        switch (item.getItemId()) {
+//            case R.id.nav_home:
+//                fragmentTransaction.replace(R.id.layout_main, new HomeFragment()).commit();
+//                break;
+//            case R.id.nav_centers:
+//                fragmentTransaction.replace(R.id.layout_main, new CentersFragment()).commit();
+//                break;
+//
+//        }
+        return true;
+    }
 }

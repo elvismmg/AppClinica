@@ -8,10 +8,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.appclinica.R;
@@ -39,8 +41,8 @@ public class PasswordFragment extends Fragment {
         // TODO: Use the ViewModel
     }
 
-    private  void loadButtonEvents(View view) {
-        Button btnBack = (Button) view.findViewById(R.id.btnBack);
+    private void loadButtonEvents(View view) {
+        Button btnBack = (Button) view.findViewById(R.id.password_btnBack);
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -48,13 +50,24 @@ public class PasswordFragment extends Fragment {
             }
         });
 
-        Button btnSave = (Button) view.findViewById(R.id.btnSave);
+        final EditText etUsername = (EditText) view.findViewById(R.id.password_etUsername);
+        Button btnSave = (Button) view.findViewById(R.id.password_btnSend);
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 //                getParentFragmentManager().beginTransaction().replace(R.id.login_layout, new LoginFragment()).commit();
-                Toast.makeText(getContext(), R.string.newUser_msgSend, Toast.LENGTH_LONG).show();
+                if (TextUtils.isEmpty(etUsername.getText())) {
+                    validateControls();
+                    etUsername.setError(getText(R.string.passwordRecovery_msgEmptyUsername));
+                } else {
+                    Toast.makeText(getContext(), R.string.passwordRecovery_msgSend, Toast.LENGTH_LONG).show();
+                }
             }
         });
     }
+
+    private boolean validateControls(){
+        return true;
+    }
+
 }

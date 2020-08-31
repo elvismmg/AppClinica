@@ -10,10 +10,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.appclinica.MainActivity;
@@ -47,16 +49,30 @@ public class LoginFragment extends Fragment {
     }
 
     private void loadButtonEvents(View view) {
-        Button btnLogin = (Button)view.findViewById(R.id.btnLogin);
+        Button btnLogin = (Button)view.findViewById(R.id.login_btnLogin);
+        final EditText etUsername = (EditText) view.findViewById(R.id.login_etUsername);
+        final EditText etPassword = (EditText) view.findViewById(R.id.login_etPassword);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), MainActivity.class);
-                getContext().startActivity(intent);
+                boolean error = false;
+
+                if (TextUtils.isEmpty(etUsername.getText())) {
+                    error = true;
+                    etUsername.setError(getText(R.string.login_forgot_emptyUsername));
+                }
+                if (TextUtils.isEmpty(etPassword.getText())) {
+                    error = true;
+                    etPassword.setError(getText(R.string.login_forgot_emptyPassword));
+                }
+                if (error == false){
+                    Intent intent = new Intent(getContext(), MainActivity.class);
+                    getContext().startActivity(intent);
+                }
             }
         });
 
-        TextView lnkForgotPassword = (TextView)view.findViewById(R.id.lnkForgotPassword);
+        TextView lnkForgotPassword = (TextView)view.findViewById(R.id.login_tvForgotPassword);
         lnkForgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -64,7 +80,7 @@ public class LoginFragment extends Fragment {
             }
         });
 
-        TextView lnkRegister = (TextView)view.findViewById(R.id.lnkRegistar);
+        TextView lnkRegister = (TextView)view.findViewById(R.id.login_tvRegistrar);
         lnkRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
