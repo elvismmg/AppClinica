@@ -8,6 +8,7 @@
     <string name="action_close">Cerrar Sesión</string>
 
     <string name="menu_home">Inicio</string>
+    <string name="menu_login">Login</string>
     <string name="menu_campus">Sedes</string>
     <string name="menu_contact">Contacto</string>
     <string name="menu_item1">Comunicación</string>
@@ -19,5 +20,15 @@
     <string name="title_home">Inicio</string>
     <string name="title_registry">Cita</string>
     <string name="title_report">Historial</string>
+    <string name="title_detail">Datos de Cita</string>
+    <string name="paciente">Paciente</string>
+    <string name="especialidad">Especialidad</string>
+    <string name="medico">Médico</string>
+    <string name="sede">Sede</string>
+    <string name="seguro">Seguro</string>
+    <string name="consultorio">Consultorio</string>
+    <string name="fecha">Fecha</string>
+    <string name="hora">Hora</string>
+    <string name="tipo_cita">Tipo de Cita</string>
 
 </resources>

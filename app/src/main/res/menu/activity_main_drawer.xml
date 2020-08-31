@@ -4,17 +4,26 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
+
+        <!-- Provisional -->
+        <item
+            android:id="@+id/nav_login"
+            android:icon="@drawable/menu_login"
+            android:title="Login" />
+        <!-- Provisional -->
+
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_home_black_24dp"
             android:title="@string/menu_home" />
+
         <item
             android:id="@+id/nav_campus"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/menu_campus"
             android:title="@string/menu_campus" />
         <item
             android:id="@+id/nav_contact"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/menu_contact"
             android:title="@string/menu_contact" />
     </group>
 
@@ -31,11 +40,11 @@
         </menu>
     </item>
 
-    <item android:title="">
+    <item android:title="Opciones">
         <menu>
             <item
                 android:title="@string/menu_close"
-                android:icon="@drawable/ic_menu_share"
+                android:icon="@drawable/menu_logout"
                 android:id="@+id/nav_session"/>
         </menu>
     </item>

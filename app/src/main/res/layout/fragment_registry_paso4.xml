@@ -1,13 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_registry_paso4"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical"
     tools:context=".ui.registry.RegistryPaso4Fragment">
 
     <TextView
+        android:id="@+id/text_registry3"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="8dp"
+        android:textAlignment="center"
+        android:text="Reserva de Cita"
+        android:textSize="20sp" />
 
-</FrameLayout>
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="30dp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Paso 4 - 4: Confirmación"
+        android:textSize="20sp" />
+
+    <ScrollView
+        android:id="@+id/ScrollView_ShowMyOrderDetail"
+        android:scrollbars="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="390dp"
+        >
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="390dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/editTextTextMultiLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="start|top"
+                    android:text="Recuerda Acercarte 30 minutos antes de la cita reservada."
+                    android:inputType="textMultiLine" />
+
+                <Button
+                    android:id="@+id/btnPago"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Pago" />
+
+
+                <EditText
+                    android:id="@+id/editTextTextMultiLine2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="start|top"
+                    android:text="Recuerda acercarte 30 minutos antes de la cita reservada.
+
+
+
+¡Paga en línea de manera fácil, rápida, segura y evita las colas!
+
+Si tienes tarjeta de débito o crédito Visa, Mastercard o Diners, puedes hacer la transferencia a través de nuestro sistema de pagos.
+Si tienes alguna duda puedes ubicarnos en  Contactos."
+                    android:inputType="textMultiLine" />
+
+
+
+
+            </LinearLayout>
+
+        </FrameLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:orientation="horizontal">
+
+        <Space
+            android:layout_width="40dp"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btnRegresar4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Regresar" />
+
+        <Space
+            android:layout_width="40dp"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btnContinuar4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reservar" />
+
+        <Space
+            android:layout_width="40dp"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+</LinearLayout>

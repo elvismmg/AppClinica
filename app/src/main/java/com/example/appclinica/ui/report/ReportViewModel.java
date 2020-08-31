@@ -10,7 +10,7 @@ public class ReportViewModel extends ViewModel {
 
     public ReportViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is dashboard fragment");
+        mText.setValue("Historial de Citas");
     }
 
     public LiveData<String> getText() {
