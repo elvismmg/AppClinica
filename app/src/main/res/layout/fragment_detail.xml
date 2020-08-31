@@ -1,13 +1,195 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_detail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical"
     tools:context=".ui.report.DetailFragment">
 
     <TextView
+        android:id="@+id/text_citadetalle"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="8dp"
+        android:textAlignment="center"
+        android:text="Datos de la Cita"
+        android:textSize="20sp" />
 
-</FrameLayout>
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="30dp" />
+
+    <ScrollView
+        android:id="@+id/ScrollView_ShowMyOrderDetail5"
+        android:scrollbars="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="390dp" >
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="390dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/lblPaciente2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/paciente" />
+
+                <EditText
+                    android:id="@+id/txtPaciente2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:text="Juan José Viszcarra" />
+
+                <TextView
+                    android:id="@+id/lblEspecialidad2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/especialidad" />
+
+                <EditText
+                    android:id="@+id/txtEspecialidad2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="text"
+                    android:text="Medicina General" />
+
+                <TextView
+                    android:id="@+id/lblMedico2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/medico" />
+
+                <EditText
+                    android:id="@+id/txtMedico2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="text"
+                    android:text="Dr. Moises García Nazareno" />
+
+                <TextView
+                    android:id="@+id/lblSede2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sede" />
+
+                <EditText
+                    android:id="@+id/txtSede2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="text"
+                    android:text="Por Tu Salud - Norte" />
+
+                <TextView
+                    android:id="@+id/lblConsultorio2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/consultorio" />
+
+                <EditText
+                    android:id="@+id/txtConsultorio2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="text"
+                    android:text="A421" />
+
+                <TextView
+                    android:id="@+id/lblFecha2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/fecha" />
+
+                <EditText
+                    android:id="@+id/txtFecha2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="text"
+                    android:text="06/08/2020" />
+
+                <TextView
+                    android:id="@+id/lblHora2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hora" />
+
+                <EditText
+                    android:id="@+id/txtHora2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="text"
+                    android:text="04:00 pm" />
+
+                <TextView
+                    android:id="@+id/lblTipo2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tipo_cita" />
+
+                <EditText
+                    android:id="@+id/txtTipo2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="text"
+                    android:text="TeleConsulta" />
+
+
+            </LinearLayout>
+
+        </FrameLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:orientation="horizontal">
+
+        <Space
+            android:layout_width="40dp"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btnRegresar5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Regresar" />
+
+        <Space
+            android:layout_width="40dp"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btnAnular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Anular" />
+
+        <Space
+            android:layout_width="40dp"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+</LinearLayout>

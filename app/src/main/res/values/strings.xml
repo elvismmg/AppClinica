@@ -8,14 +8,31 @@
     <string name="action_close">Cerrar Sesión</string>
 
     <string name="menu_home">Inicio</string>
+    <string name="menu_login">Login</string>
     <string name="menu_campus">Sedes</string>
     <string name="menu_contact">Contacto</string>
     <string name="menu_item1">Comunicación</string>
     <string name="menu_share">Compartir</string>
     <string name="menu_send">Enviar</string>
-    <string name="menu_myinfo">Mis Datos</string>
+    <string name="menu_myinfo">Datos</string>
     <string name="menu_closesession">Cerrar Sesión</string>
 
+    <!-- Bottom Navigation -->
+    <string name="title_home">Inicio</string>
+    <string name="title_registry">Cita</string>
+    <string name="title_report">Historial</string>
+    <string name="title_detail">Datos de Cita</string>
+    <string name="paciente">Paciente</string>
+    <string name="especialidad">Especialidad</string>
+    <string name="medico">Médico</string>
+    <string name="sede">Sede</string>
+    <string name="seguro">Seguro</string>
+    <string name="consultorio">Consultorio</string>
+    <string name="fecha">Fecha</string>
+    <string name="hora">Hora</string>
+    <string name="tipo_cita">Tipo de Cita</string>
+
+    <!-- Login activity -->
     <!-- Login fragment -->
     <string name="login_username">Usuario</string>
     <string name="login_password">Contraseña</string>
@@ -23,17 +40,12 @@
     <string name="login_register">Registrar</string>
     <string name="login_forgot">Olvidé contraseña</string>
 
-    <string name="login_forgot_emptyUsername">Por favor ingrese su nombre de usuario</string>
-    <string name="login_forgot_emptyPassword">Por favor ingrese su contraseña</string>
-
-    <!-- Login new user layout-->
+    <!-- Login new user -->
     <string name="newUser_Title">Registrar Nuevo Paciente</string>
     <string name="newUser_DocumentNumber">Número de Documento</string>
     <string name="newUser_FirstName">Nombres</string>
     <string name="newUser_LastName">Apellidos</string>
-    <string name="newUser_Gender">Sexo</string>
-    <string name="newUser_rbMale">Masculino</string>
-    <string name="newUser_rbFemale">Femenino</string>
+    <string name="newUser_Sex">Sexo</string>
     <string name="newUser_Birthdate">Fecha Nacimiento</string>
     <string name="newUser_PhoneNumber">Teléfono</string>
     <string name="newUser_eMail">Correo</string>
@@ -47,7 +59,7 @@
     <string name="newUser_HintDocumentNumber">Ingresar el número de documento</string>
     <string name="newUser_HintFirstName">Ingresar su nombre</string>
     <string name="newUser_HintLastName">Ingresar su apellido</string>
-    <string name="newUser_HintGender">Seleccione su sexo</string>
+    <string name="newUser_HintSex">Seleccione su sexo</string>
     <string name="newUser_HintBirthdate">Ingresar su fecha de nacimiento</string>
     <string name="newUser_HintPhoneNumber">Ingresar su teléfono</string>
     <string name="newUser_HinteMail">Ingresar su correo</string>
@@ -61,9 +73,7 @@
     <string name="changeUser_DocumentNumber">Número de Documento</string>
     <string name="changeUser_FirstName">Nombres</string>
     <string name="changeUser_LastName">Apellidos</string>
-    <string name="changeUser_Gender">Sexo</string>
-    <string name="changeUser_rbMale">Masculino</string>
-    <string name="changeUser_rbFemale">Femenino</string>
+    <string name="changeUser_Sex">Sexo</string>
     <string name="changeUser_Birthdate">Fecha Nacimiento</string>
     <string name="changeUser_PhoneNumber">Teléfono</string>
     <string name="changeUser_eMail">Correo</string>
@@ -74,16 +84,12 @@
 
     <string name="changeUser_msgSave">Se actualizaron los datos del paciente</string>
 
-    <!-- centers fragment -->
-    <string name="centers_Title">Sedes</string>
-
     <!-- Login password recovery -->
     <string name="passwordRecovery_Title">Recuperar contraseña</string>
     <string name="passwordRecovery_Username">Usuario</string>
     <string name="passwordRecovery_btnBack">Regresar</string>
     <string name="passwordRecovery_btnSend">Enviar</string>
-    <string name="passwordRecovery_msgEmptyUsername">Por favor ingrese su usuario</string>
-    <string name="passwordRecovery_msgSend">Revise su correo electrónico</string>
+    <string name="newUser_msgSend">Revise su correo electrónico</string>
 
     <!-- Bottom Navigation -->
     <string name="title_home">Inicio</string>

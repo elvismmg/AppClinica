@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="Sedes">
+        <item>Norte</item>
+        <item>Sur</item>
+        <item>Centro</item>
+    </array>
+
+    <array name="especialidad">
+        <item>Medicina General</item>
+        <item>Pediatría</item>
+        <item>Dermatología</item>
+        <item>Psiología</item>
+    </array>
+
+    <array name="seguro">
+        <item>Rimac</item>
+        <item>La Positiva</item>
+        <item>Pacífico</item>
+    </array>
+
+</resources>

@@ -8,12 +8,12 @@
 
     <item
         android:id="@+id/bottom_registry"
-        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:icon="@drawable/menu_appointment"
         android:title="@string/title_registry" />
 
     <item
         android:id="@+id/bottom_report"
-        android:icon="@drawable/ic_notifications_black_24dp"
+        android:icon="@drawable/ic_dashboard_black_24dp"
         android:title="@string/title_report" />
 
 </menu>

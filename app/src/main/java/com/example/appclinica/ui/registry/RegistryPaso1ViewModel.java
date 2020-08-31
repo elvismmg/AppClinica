@@ -10,7 +10,7 @@ public class RegistryPaso1ViewModel extends ViewModel {
 
     public RegistryPaso1ViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is notifications fragment");
+        mText.setValue("Reserva de Cita");
     }
 
     public LiveData<String> getText() {
