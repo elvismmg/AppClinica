@@ -17,7 +17,9 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.appclinica.R;
 import com.example.appclinica.ui.models.CenterModel;
+import com.example.appclinica.ui.registry.RegistryPaso2Fragment;
 
+import java.security.PrivateKey;
 import java.util.List;
 
 public class CentersAdapter extends RecyclerView.Adapter<CentersAdapter.MyViewHolder> {
@@ -59,12 +61,9 @@ public class CentersAdapter extends RecyclerView.Adapter<CentersAdapter.MyViewHo
                 //centerMapFragment.getParentFragmentManager().beginTransaction().replace(R.id.layout_main, centerMapFragment).commit();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 //                Fragment centers = fragmentManager.findFragmentById(R.id.layout_centers);
-//
-////                if(centers != null) {
-////                    fragmentTransaction.remove(centers);
-////                }
-
+                fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.replace(R.id.layout_main, centerMapFragment).commit();
+
             }
         });
     }

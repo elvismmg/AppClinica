@@ -25,10 +25,7 @@ public class CenterMapFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        if (container != null) {
-            //container.removeAllViews();
-            container.clearDisappearingChildren();
-        }
+
         return inflater.inflate(R.layout.fragment_center_map, container, false);
     }
 
