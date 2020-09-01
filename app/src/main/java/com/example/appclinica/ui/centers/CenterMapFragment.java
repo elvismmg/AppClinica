@@ -1,6 +1,8 @@
 package com.example.appclinica.ui.centers;
 
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
@@ -12,8 +14,12 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.appclinica.R;
+import com.example.appclinica.ui.registry.RegistryPaso2Fragment;
+import com.example.appclinica.ui.user.ChangeUserFragment;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -42,7 +48,17 @@ public class CenterMapFragment extends Fragment implements OnMapReadyCallback {
 //        SupportMapFragment mapFragment = (SupportMapFragment) getFragmentManager().findFragmentById(R.id.map);
 //        mapFragment.getMapAsync();
 
-        return inflater.inflate(R.layout.fragment_center_map, container, false);
+        View view = inflater.inflate(R.layout.fragment_center_map, container, false);
+
+        loadButtonEvents(view);
+        TextView tvTitle = (TextView) view.findViewById(R.id.center_map_tvTitle);
+        Bundle bundle = ((Bundle)this.getArguments());
+
+        if (bundle != null) {
+            tvTitle.setText(bundle.getString("centerName"));
+        }
+
+        return view;
     }
 
     @Override
@@ -66,7 +82,9 @@ public class CenterMapFragment extends Fragment implements OnMapReadyCallback {
     public void onMapReady(GoogleMap map) {
 
         Bundle bundle = ((Bundle)this.getArguments());
-
+        if (bundle == null) {
+            return;
+        }
 
         LatLng sydney = new LatLng(bundle.getDouble("centerLatitude"), bundle.getDouble("centerLongitude"));
         map.addMarker(new MarkerOptions().position(sydney)
@@ -74,6 +92,21 @@ public class CenterMapFragment extends Fragment implements OnMapReadyCallback {
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 15.0f));
 
         googleMap = map;
+
+    }
+
+    public void loadButtonEvents(View view){
+        Button btnBack = (Button) view.findViewById(R.id.center_map_btnBack);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getParentFragmentManager().beginTransaction().add(R.id.layout_centers_mainFrame, new CentersFragment()).commit();
+
+
+
+            }
+        });
+
 
     }
 }

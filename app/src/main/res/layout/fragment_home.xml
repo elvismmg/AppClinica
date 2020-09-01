@@ -39,23 +39,31 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:textAlignment="center"
-                android:textSize="20sp"
+                android:textSize="5sp"
                  />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:layout_gravity="center"
+                android:src="@drawable/logosmall" />
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="30dp" />
+                android:layout_height="10dp" />
 
             <TextView
                 android:id="@+id/textView3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Perfil Clínico"
+                android:textStyle="bold"
                 android:textSize="20sp" />
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="30dp" />
+                android:layout_height="20dp" />
 
             <TextView
                 android:id="@+id/textView2"
@@ -128,7 +136,7 @@
                 android:text="O+" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/btnMyInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Mis Datos" />
