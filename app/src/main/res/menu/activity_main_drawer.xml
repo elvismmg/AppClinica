@@ -39,7 +39,7 @@
                 android:id="@+id/nav_myinfo"/>
             <item
                 android:title="@string/menu_closesession"
-                android:icon="@drawable/ic_menu_share"
+                android:icon="@drawable/menu_logout"
                 android:id="@+id/nav_session"/>
         </menu>
     </item>

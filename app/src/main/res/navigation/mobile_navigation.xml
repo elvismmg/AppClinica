@@ -5,13 +5,13 @@
     android:id="@+id/mobile_navigation"
     app:startDestination="@+id/nav_home">
 
-    <!-- Provisional -->
+    <!-- Provisional
     <fragment
         android:id="@+id/nav_login"
         android:name="com.example.appclinica.ui.home.LoginFragment"
         android:label="@string/menu_login"
         tools:layout="@layout/fragment_login" />
-    <!-- Provisional -->
+    Provisional -->
 
     <fragment
         android:id="@+id/nav_home"
