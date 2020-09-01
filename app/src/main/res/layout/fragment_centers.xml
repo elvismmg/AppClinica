@@ -3,29 +3,43 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/layout_centers"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@android:color/white"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.centers.CentersFragment">
-    <ImageView
-        android:id="@+id/new_user_ivCentersLogo"
-        android:layout_marginTop="20dp"
+
+    <FrameLayout
+        android:id="@+id/layout_centers_mainFrame"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/centers" />
+        android:layout_height="match_parent">
 
-    <TextView android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/colorlabels"
-        android:layout_marginTop="10dp"
-        android:gravity="center"
-        android:textSize="22dp"
-        android:text="@string/centers_Title"/>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/new_user_ivCentersLogo"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/centers" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/centers_rvCenters"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorlabels"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:textSize="22dp"
+                android:text="@string/centers_Title"/>
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:clickable="true"
+                android:id="@+id/centers_rvCenters"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+        </LinearLayout>
+    </FrameLayout>
 </LinearLayout>

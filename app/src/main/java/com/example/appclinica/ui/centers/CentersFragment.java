@@ -54,11 +54,23 @@ public class CentersFragment extends Fragment {
 
     private List<CenterModel> GetCenters() {
         List<CenterModel> _list = new ArrayList<>();
-        _list.add(new CenterModel("Sede Surco", "Av. Caminos del Inca 752, Santiago de Surco", "Lima", "-12.1177673", "-76.9918108"));
-        _list.add(new CenterModel("Sede Monterrico", "Av. Primavera 2540, Monterrico", "Lima", "-12.1041753", "-76.9633614"));
-        _list.add(new CenterModel("Sede Miraflores", "Av. Alfredo Benavides 503, Miraflores", "Lima", "-12.1254878", "-77.0283469"));
-        _list.add(new CenterModel("Sede San Borja 1", "Av. Guardia Civil 421, San Borja", "Lima", "-12.1044037", "-77.0190864"));
-        _list.add(new CenterModel("Sede San Borja 2", "Av. Javier Prado Este 4520, San Borja", "Lima", "-12.091353", "-77.0167166"));
+        _list.add(new CenterModel("Sede Surco", "Av. Caminos del Inca 752, Santiago de Surco", "Lima", -12.1177673, -76.9918108));
+        _list.add(new CenterModel("Sede Monterrico", "Av. Primavera 2540, Monterrico", "Lima", -12.1041753, -76.9633614));
+        _list.add(new CenterModel("Sede Miraflores", "Av. Alfredo Benavides 503, Miraflores", "Lima", -12.1254878, -77.0283469));
+        _list.add(new CenterModel("Sede San Borja 1", "Av. Guardia Civil 421, San Borja", "Lima", -12.1044037, -77.0190864));
+        _list.add(new CenterModel("Sede San Borja 2", "Av. Javier Prado Este 4520, San Borja", "Lima", -12.091353, -77.0167166));
+
+        _list.add(new CenterModel("Sede Surco", "Av. Caminos del Inca 752, Santiago de Surco", "Lima", -12.1177673, -76.9918108));
+        _list.add(new CenterModel("Sede Monterrico", "Av. Primavera 2540, Monterrico", "Lima", -12.1041753, -76.9633614));
+        _list.add(new CenterModel("Sede Miraflores", "Av. Alfredo Benavides 503, Miraflores", "Lima", -12.1254878, -77.0283469));
+        _list.add(new CenterModel("Sede San Borja 1", "Av. Guardia Civil 421, San Borja", "Lima", -12.1044037, -77.0190864));
+        _list.add(new CenterModel("Sede San Borja 2", "Av. Javier Prado Este 4520, San Borja", "Lima", -12.091353, -77.0167166));
+
+        _list.add(new CenterModel("Sede Surco", "Av. Caminos del Inca 752, Santiago de Surco", "Lima", -12.1177673, -76.9918108));
+        _list.add(new CenterModel("Sede Monterrico", "Av. Primavera 2540, Monterrico", "Lima", -12.1041753, -76.9633614));
+        _list.add(new CenterModel("Sede Miraflores", "Av. Alfredo Benavides 503, Miraflores", "Lima", -12.1254878, -77.0283469));
+        _list.add(new CenterModel("Sede San Borja 1", "Av. Guardia Civil 421, San Borja", "Lima", -12.1044037, -77.0190864));
+        _list.add(new CenterModel("Sede San Borja 2", "Av. Javier Prado Este 4520, San Borja", "Lima", -12.091353, -77.0167166));
         return _list;
     }
 }

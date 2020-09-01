@@ -51,8 +51,8 @@ public class CentersAdapter extends RecyclerView.Adapter<CentersAdapter.MyViewHo
                 Bundle bundle = new Bundle();
                 bundle.putString("centerName", centerModel.getName());
                 bundle.putString("centerAddress", centerModel.getAddress());
-                bundle.putString("centerLatitude", centerModel.getLatitude());
-                bundle.putString("centerLongitude", centerModel.getLongitude());
+                bundle.putDouble("centerLatitude", centerModel.getLatitude());
+                bundle.putDouble("centerLongitude", centerModel.getLongitude());
                 centerMapFragment.setArguments(bundle);
 
                 //centerMapFragment.getParentFragmentManager().beginTransaction().replace(R.id.layout_main, centerMapFragment).commit();
@@ -62,7 +62,7 @@ public class CentersAdapter extends RecyclerView.Adapter<CentersAdapter.MyViewHo
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 //                Fragment centers = fragmentManager.findFragmentById(R.id.layout_centers);
                 fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.replace(R.id.layout_main, centerMapFragment).commit();
+                fragmentTransaction.replace(R.id.layout_centers_mainFrame, centerMapFragment).commit();
 
             }
         });

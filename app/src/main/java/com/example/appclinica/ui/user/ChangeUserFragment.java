@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
@@ -39,6 +40,7 @@ public class ChangeUserFragment extends Fragment {
         currentView = inflater.inflate(R.layout.fragment_change_user, container, false);
 
         loadButtonEvents();
+        loadInfo();
 
         return currentView;
     }
@@ -62,6 +64,36 @@ public class ChangeUserFragment extends Fragment {
             }
         });
     }
+
+
+    private  void loadInfo() {
+        EditText etDocumentNumber = (EditText) currentView.findViewById(R.id.change_user_etDocumentNumber);
+        EditText etFirstName = (EditText) currentView.findViewById(R.id.change_user_etFirstName);
+        EditText etLastName = (EditText) currentView.findViewById(R.id.change_user_etLastName);
+        RadioButton rbMale = (RadioButton) currentView.findViewById(R.id.change_user_rbMale);
+
+        DatePicker dpBirthdate = (DatePicker) currentView.findViewById(R.id.change_user_dpBirthdate);
+
+        EditText etPhoneNumber = (EditText) currentView.findViewById(R.id.change_user_etPhoneNumber);
+        EditText eteMail = (EditText) currentView.findViewById(R.id.change_user_eteMail);
+        EditText etBloodType = (EditText) currentView.findViewById(R.id.change_user_etBloodType);
+        EditText etPassword = (EditText) currentView.findViewById(R.id.change_user_etPassword);
+
+        etDocumentNumber.setText("42548520");
+        etFirstName.setText("Cristhian");
+        etLastName.setText("Bazan Ludeña");
+        rbMale.setChecked(true);
+        dpBirthdate.init(1984, 7,24, null);
+
+
+
+        etPhoneNumber.setText("996352102");
+        eteMail.setText("cbazanl@outlook.com");
+        etBloodType.setText("Rh+");
+        etPassword.setText("123456");
+
+    }
+
 
     private boolean validate(View view){
         boolean isValid = true;

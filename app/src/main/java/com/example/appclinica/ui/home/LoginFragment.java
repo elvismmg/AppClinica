@@ -65,6 +65,7 @@ public class LoginFragment extends Fragment {
                     error = true;
                     etPassword.setError(getText(R.string.login_forgot_emptyPassword));
                 }
+
                 if (error == false){
                     Intent intent = new Intent(getContext(), MainActivity.class);
                     getContext().startActivity(intent);

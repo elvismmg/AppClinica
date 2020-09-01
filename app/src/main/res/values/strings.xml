@@ -120,6 +120,7 @@
     <string name="validation_msgInvalidGender">"Seleccione un género"</string>
     <string name="validation_msgInvalidBirthdate">"Fecha de cumpleaños inválido"</string>
     <string name="validation_msgLenghtField">La longitud del campo excede el límite permitido</string>
+    <string name="google_maps_key">AIzaSyAAWhk6G9HsZYPNWYJXrSk1umiG2DhrCYc</string>
 
 
 </resources>
