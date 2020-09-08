@@ -72,7 +72,7 @@ public class CitasAdapter extends RecyclerView.Adapter<CitasAdapter.MyViewHolder
                 //AppCompatActivity activity = (AppCompatActivity) view.getContext();
                 //activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_report, new DetailFragment()).addToBackStack(null).commit();
 
-                Toast.makeText(view.getContext(),citas.getEspecialidad(),Toast.LENGTH_SHORT).show();
+
 
                 //AppCompatActivity activity = (AppCompatActivity) view.getContext();
                 //FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
@@ -81,6 +81,8 @@ public class CitasAdapter extends RecyclerView.Adapter<CitasAdapter.MyViewHolder
                 transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 //transaction.addToBackStack(null);
                 transaction.commit();
+
+                Toast.makeText(view.getContext(),citas.getEspecialidad(),Toast.LENGTH_SHORT).show();
 
 
             }
