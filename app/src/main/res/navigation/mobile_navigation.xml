@@ -3,15 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/nav_login">
 
-    <!-- Provisional
     <fragment
         android:id="@+id/nav_login"
         android:name="com.example.appclinica.ui.home.LoginFragment"
         android:label="@string/menu_login"
         tools:layout="@layout/fragment_login" />
-    Provisional -->
 
     <fragment
         android:id="@+id/nav_home"
@@ -35,19 +33,13 @@
         android:id="@+id/nav_send"
         android:name="com.example.appclinica.ui.send.SendFragment"
         android:label="@string/menu_send"
-        tools:layout="@layout/fragment_contact" />
+        tools:layout="@layout/fragment_send" />
 
     <fragment
         android:id="@+id/nav_share"
         android:name="com.example.appclinica.ui.share.ShareFragment"
         android:label="@string/menu_share"
-        tools:layout="@layout/fragment_contact" />
-
-<!--    <fragment-->
-<!--        android:id="@+id/nav_session"-->
-<!--        android:name="com.example.appclinica.ui.session.SessionFragment"-->
-<!--        android:label="@string/menu_share"-->
-<!--        tools:layout="@layout/fragment_session" />-->
+        tools:layout="@layout/fragment_share" />
 
      <fragment
         android:id="@+id/nav_myinfo"
@@ -55,11 +47,20 @@
         android:label="@string/menu_myinfo"
         tools:layout="@layout/fragment_change_user"/>
 
-    <activity
+    <fragment
         android:id="@+id/nav_session"
-        android:name="com.example.appclinica.LoginActivity"
+        android:name="com.example.appclinica.ui.session.SessionFragment"
         android:label="@string/menu_closesession"
-        tools:layout="@layout/activity_login"/>
+        tools:layout="@layout/fragment_login" />
+    <!--    tools:layout="@layout/fragment_session" /> -->
+
+    <!--
+        <activity
+            android:id="@+id/nav_session"
+            android:name="com.example.appclinica.LoginActivity"
+            android:label="@string/menu_closesession"
+            tools:layout="@layout/activity_login"/>
+    -->
 
     <fragment
         android:id="@+id/bottom_home"
@@ -78,5 +79,22 @@
         tools:layout="@layout/fragment_report"
         android:label="@string/title_report"
         android:name="com.example.appclinica.ui.report.ReportFragment"/>
+
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.example.appclinica.ui.report.DetailFragment"
+        android:label="@string/title_detail"
+        tools:layout="@layout/fragment_detail" />
+
+    <fragment
+        android:id="@+id/passwordFragment"
+        android:name="com.example.appclinica.ui.home.PasswordFragment"
+        android:label="fragment_password"
+        tools:layout="@layout/fragment_password" />
+
+    <fragment
+        android:id="@+id/newUserFragment"
+        android:name="com.example.appclinica.ui.user.NewUserFragment"
+        android:label="NewUserFragment" />
 
 </navigation>

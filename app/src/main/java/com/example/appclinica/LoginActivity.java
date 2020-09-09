@@ -10,11 +10,13 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
 
-        LoginFragment loginFragment = new LoginFragment();
-        getSupportFragmentManager().beginTransaction().add(R.id.login_layout, loginFragment).commit();
+        super.onCreate(savedInstanceState);
+        //setContentView(R.layout.activity_login);
+
+        //Para Usarse como Fragment
+        //LoginFragment loginFragment = new LoginFragment();
+        //getSupportFragmentManager().beginTransaction().add(R.id.login_layout, loginFragment).commit();
 
 
         //final Context context = this;
@@ -46,6 +48,7 @@ public class LoginActivity extends AppCompatActivity {
 //                //getSupportFragmentManager().beginTransaction().replace(R.id.login_layout, new RegistryUserFragment());
 //            }
 //        });
+
     }
 
 }

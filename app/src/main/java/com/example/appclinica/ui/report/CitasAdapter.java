@@ -13,6 +13,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appclinica.MainActivity;
@@ -27,7 +29,8 @@ public class CitasAdapter extends RecyclerView.Adapter<CitasAdapter.MyViewHolder
     private List<Citas> citasList;
     //private Bundle mBundle;
     private Fragment fragment1;
-    private Context mContext;
+    //private Context mContext;
+    private NavController navController;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
@@ -45,9 +48,10 @@ public class CitasAdapter extends RecyclerView.Adapter<CitasAdapter.MyViewHolder
     public CitasAdapter(List<Citas> citasList) {
         this.citasList = citasList;
     }
-    public CitasAdapter(Context mContext, List<Citas> citasList, ReportFragment fragment1) {
+    //public CitasAdapter(Context mContext, List<Citas> citasList, ReportFragment fragment1) {
+    public CitasAdapter(List<Citas> citasList, ReportFragment fragment1) {
         this.citasList = citasList;
-        this.mContext  = mContext;
+        //this.mContext  = mContext;
         this.fragment1 = fragment1;
     }
 
@@ -55,6 +59,7 @@ public class CitasAdapter extends RecyclerView.Adapter<CitasAdapter.MyViewHolder
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.citas_fila, parent, false);
+        navController = NavHostFragment.findNavController(fragment1);
         return new MyViewHolder(itemView);
     }
 
@@ -69,22 +74,8 @@ public class CitasAdapter extends RecyclerView.Adapter<CitasAdapter.MyViewHolder
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //AppCompatActivity activity = (AppCompatActivity) view.getContext();
-                //activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_report, new DetailFragment()).addToBackStack(null).commit();
-
-
-
-                //AppCompatActivity activity = (AppCompatActivity) view.getContext();
-                //FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
-                FragmentTransaction transaction = fragment1.getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_report, new DetailFragment() );
-                transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                //transaction.addToBackStack(null);
-                transaction.commit();
-
                 Toast.makeText(view.getContext(),citas.getEspecialidad(),Toast.LENGTH_SHORT).show();
-
-
+                navController.navigate(R.id.detailFragment);
             }
 
 

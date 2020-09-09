@@ -1,5 +1,7 @@
 package com.example.appclinica;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -32,49 +34,26 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
     private NavigationView navigationView;
     private BottomNavigationView bottomNavView;
 
+    private boolean session;
+
     @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_main);
 
-            /*
-            Toolbar toolbar = findViewById(R.id.toolbar);
-            setSupportActionBar(toolbar);
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_campus, R.id.nav_contact,
-                R.id.nav_share, R.id.nav_send, R.id.nav_session )
-                .setDrawerLayout(drawer)
-                .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-        NavigationUI.setupWithNavController(navigationView, navController);
-             */
+            initToolbar();
+            initFab();
+            initNavigation();
 
-        initToolbar();
-        initFab();
-        initNavigation();
-//        navigationView.setNavigationItemSelectedListener(this);
-        //showBottomNavigation(false);
-        //HomeFragment homeFragment = new HomeFragment();
-        //getSupportFragmentManager().beginTransaction().add(R.id.layout_main, homeFragment).commit();
+            //session = getSession();
+            //showBottomNavigation(session);
+
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        if (session) getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
@@ -117,7 +96,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Gracias por contactarse, enseguida nos comunicamos con usted.", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
@@ -133,32 +112,38 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
+                R.id.nav_login,
                 R.id.nav_home, R.id.nav_centers, R.id.nav_contact,
-                R.id.nav_share, R.id.nav_send, R.id.nav_session,
+                R.id.nav_share, R.id.nav_send, R.id.nav_myinfo, R.id.nav_session,
                 R.id.bottom_home, R.id.bottom_registry, R.id.bottom_report)
                 .setDrawerLayout(drawer)
                 .build();
+
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
 
-
-
         NavigationUI.setupWithNavController(navigationView, navController);
         NavigationUI.setupWithNavController(bottomNavView, navController);
+
+        closeSession();
+
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-//        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-//        switch (item.getItemId()) {
-//            case R.id.nav_home:
-//                fragmentTransaction.replace(R.id.layout_main, new HomeFragment()).commit();
-//                break;
-//            case R.id.nav_centers:
-//                fragmentTransaction.replace(R.id.layout_main, new CentersFragment()).commit();
-//                break;
-//
-//        }
         return true;
     }
+
+    public boolean getSession( ){
+        SharedPreferences prefs = getSharedPreferences("PREFERENCIAS", Context.MODE_PRIVATE);
+        return prefs.getBoolean ("SESSION", false);
+    }
+
+    public void closeSession( ){
+        SharedPreferences prefs = getSharedPreferences("PREFERENCIAS", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putBoolean("SESSION", false);
+        editor.commit();
+    }
+
 }

@@ -7,6 +7,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -21,6 +23,7 @@ import com.example.appclinica.R;
 public class PasswordFragment extends Fragment {
 
     private PasswordViewModel mViewModel;
+    private NavController navController;
 
     public static PasswordFragment newInstance() {
         return new PasswordFragment();
@@ -30,23 +33,26 @@ public class PasswordFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.fragment_password, container, false);
+        navController = NavHostFragment.findNavController(this);
         loadButtonEvents(view);
         return view;
     }
 
+    /*
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(PasswordViewModel.class);
         // TODO: Use the ViewModel
-    }
+    }*/
 
     private void loadButtonEvents(View view) {
         Button btnBack = (Button) view.findViewById(R.id.password_btnBack);
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getParentFragmentManager().beginTransaction().replace(R.id.login_layout, new LoginFragment()).commit();
+                navController.navigate(R.id.nav_login);
+                //getParentFragmentManager().beginTransaction().replace(R.id.login_layout, new LoginFragment()).commit();
             }
         });
 

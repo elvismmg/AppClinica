@@ -45,7 +45,8 @@ public class ReportFragment extends Fragment {
         recyclerView = (RecyclerView) root.findViewById(R.id.recycler_view);
 
         //mAdapter = new CitasAdapter(citasList);
-        mAdapter = new CitasAdapter(getContext(), citasList, this);
+        //mAdapter = new CitasAdapter(getContext(), citasList, this);
+        mAdapter = new CitasAdapter(citasList, this);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());

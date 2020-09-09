@@ -4,18 +4,35 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_login"
+            android:icon="@drawable/menu_login"
+            android:title="@string/menu_login" />
+
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_home_black_24dp"
             android:title="@string/menu_home" />
         <item
             android:id="@+id/nav_centers"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/menu_campus"
             android:title="@string/menu_campus" />
         <item
             android:id="@+id/nav_contact"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/menu_contact"
             android:title="@string/menu_contact" />
+
+        <item
+            android:title="@string/menu_myinfo"
+            android:icon="@drawable/menu_datos"
+            android:id="@+id/nav_myinfo"/>
+
+        <item
+            android:title="@string/menu_closesession"
+            android:icon="@drawable/menu_logout"
+            android:id="@+id/nav_session"/>
+
     </group>
 
     <item android:title="@string/menu_item1">
@@ -28,19 +45,7 @@
                 android:title="@string/menu_send"
                 android:icon="@drawable/ic_menu_send"
                 android:id="@+id/nav_send"/>
-        </menu>
-    </item>
 
-    <item android:title="">
-        <menu>
-            <item
-                android:title="@string/menu_myinfo"
-                android:icon="@drawable/ic_menu_share"
-                android:id="@+id/nav_myinfo"/>
-            <item
-                android:title="@string/menu_closesession"
-                android:icon="@drawable/menu_logout"
-                android:id="@+id/nav_session"/>
         </menu>
     </item>
 
