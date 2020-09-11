@@ -38,8 +38,10 @@
     <string name="login_login">Ingresar</string>
     <string name="login_register">Registrar</string>
     <string name="login_forgot">Olvidé contraseña</string>
-    <string name="login_forgot_emptyUsername">Por favor ingrese su nombre de usuario</string>
-    <string name="login_forgot_emptyPassword">Por favor ingrese su contraseña</string>
+    <string name="login_emptyUsername">Por favor ingrese su nombre de usuario</string>
+    <string name="login_emptyPassword">Por favor ingrese su contraseña</string>
+    <string name="login_wrongLogin">El usuario o contraseña es incorrecto</string>
+    <string name="login_wrongLoginShort">Usuario o contraseña incorrecto</string>
 
     <!-- Login new user -->
     <string name="newUser_Title">Registrar Nuevo Paciente</string>

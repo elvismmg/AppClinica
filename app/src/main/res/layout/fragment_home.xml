@@ -62,74 +62,69 @@
 
 
                 <TextView
-                    android:id="@+id/textView2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Sexo" />
 
                 <EditText
-                    android:id="@+id/editTextTextPersonName"
+                    android:id="@+id/home_etGenero"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:inputType="textPersonName"
-                    android:text="Masculino" />
+                    android:enabled="false"/>
 
                 <TextView
-                    android:id="@+id/textView_2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Edad" />
 
                 <EditText
-                    android:id="@+id/editTextTextPersonName_2"
+                    android:id="@+id/home_etEdad"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="28 Años" />
+                    android:enabled="false"
+                    android:inputType="textPersonName"/>
 
                 <TextView
-                    android:id="@+id/textView_3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Peso" />
 
                 <EditText
-                    android:id="@+id/editTextTextPersonName_3"
+                    android:id="@+id/home_etPeso"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:inputType="textPersonName"
-                    android:text="60 KG" />
+                    android:enabled="false" />
 
                 <TextView
-                    android:id="@+id/textView_4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Altura" />
 
                 <EditText
-                    android:id="@+id/editTextTextPersonName_4"
+                    android:id="@+id/home_etAltura"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:inputType="textPersonName"
-                    android:text="1.80 m" />
+                    android:enabled="false" />
 
                 <TextView
-                    android:id="@+id/textView_5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Tipo de Sangre" />
 
                 <EditText
-                    android:id="@+id/editTextTextPersonName_5"
+                    android:id="@+id/home_etTipoSangre"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:inputType="textPersonName"
-                    android:text="O+" />
+                    android:enabled="false" />
 
                 <Button
                     android:id="@+id/btnMyInfo"

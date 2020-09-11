@@ -18,13 +18,22 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.appclinica.R;
 import com.example.appclinica.ui.user.ChangeUserFragment;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.TimeZone;
+
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -39,6 +48,46 @@ public class HomeFragment extends Fragment {
 //            }
 //        });
 
+        Bundle bundle = getArguments();
+
+
+        SimpleDateFormat fechaNacimientoParse = new SimpleDateFormat("yyyy-MM-dd");
+        int edad = 0;
+        try {
+            Date fechaNacimiento = fechaNacimientoParse.parse(bundle.getString("pacienteFechaNacimiento"));
+
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(fechaNacimiento);
+            edad = Calendar.getInstance().get(Calendar.YEAR) - cal.get(Calendar.YEAR);
+
+            fechaNacimiento.getTime();
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
+        TextView etGenero = (TextView) root.findViewById(R.id.home_etGenero);
+        TextView etEdad = (TextView) root.findViewById(R.id.home_etEdad);
+        TextView etPeso = (TextView) root.findViewById(R.id.home_etPeso);
+        TextView etAltura = (TextView) root.findViewById(R.id.home_etAltura);
+        TextView etTipoSangre = (TextView) root.findViewById(R.id.home_etTipoSangre);
+
+        String genero = "";
+        if(bundle.getString("pacienteGenero") == "M") {
+            genero ="Masculino";
+        }
+        else {
+            genero ="Femenino";
+        }
+
+        etGenero.setText(genero);
+        etEdad.setText(String.valueOf(edad));
+        etPeso.setText(String.valueOf(bundle.getDouble("pacientePeso")));
+        etAltura.setText(String.valueOf(bundle.getDouble("pacienteAltura")));
+        etTipoSangre.setText(bundle.getString("pacienteTipoSangre"));
+
+
         Button btnMyInfo = (Button) root.findViewById(R.id.btnMyInfo);
         btnMyInfo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,7 +99,7 @@ public class HomeFragment extends Fragment {
         return root;
     }
 
-//    public void misDatosOnClick(View view) {
+    //    public void misDatosOnClick(View view) {
 //        FragmentManager fragmentManager = ((AppCompatActivity)getContext()).getSupportFragmentManager();
 //        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 //        fragmentTransaction.addToBackStack(null);
