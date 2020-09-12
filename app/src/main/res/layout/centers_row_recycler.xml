@@ -19,6 +19,7 @@
 
     <TextView
         android:id="@+id/centers_row_tvCenterName"
+        android:layout_marginLeft="5dp"
         android:layout_width="270dp"
         android:layout_height="wrap_content"
         android:layout_toEndOf="@id/centers_row_ivMedicalCenter"
@@ -28,6 +29,7 @@
 
     <TextView
         android:id="@+id/centers_row_tvCenterAddress"
+        android:layout_marginLeft="5dp"
         android:layout_width="270dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/centers_row_tvCenterName"

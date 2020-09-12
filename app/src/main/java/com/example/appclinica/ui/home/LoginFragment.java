@@ -33,6 +33,8 @@ import com.example.appclinica.ui.helpers.Constants;
 import com.example.appclinica.ui.helpers.JsonArrayCustomRequest;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import net.yslibrary.android.keyboardvisibilityevent.util.UIUtil;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -87,6 +89,7 @@ public class LoginFragment extends Fragment {
                 boolean error = false;
                 final ProgressDialog progress = new ProgressDialog(getContext());
 
+                UIUtil.hideKeyboard(getActivity());
 
 
                 if (TextUtils.isEmpty(etUsername.getText())) {
@@ -108,7 +111,6 @@ public class LoginFragment extends Fragment {
                     progress.setCancelable(false);
                     progress.show();
 
-
                     JSONObject jsonobject = new JSONObject();
                     try {
                         jsonobject.put("codTipo", "1");
@@ -118,8 +120,6 @@ public class LoginFragment extends Fragment {
                     } catch (JSONException e) {
                         Log.i("======>", e.getMessage());
                     }
-
-
 
                     JsonArrayCustomRequest jsonObjReq = new JsonArrayCustomRequest(Request.Method.POST,
                             Constants.WSUrlLoginPaciente,jsonobject,
@@ -135,19 +135,19 @@ public class LoginFragment extends Fragment {
                                     }
                                     else {
                                         try {
-                                            JSONObject jsonObject = response.getJSONObject(0);
+                                            JSONObject jsonObjectResponse = response.getJSONObject(0);
 
                                             Bundle bundle = new Bundle();
-                                            bundle.putString("pacienteNombres", jsonObject.getString("Nombres"));
-                                            bundle.putString("pacienteApellidos", jsonObject.getString("Apellidos"));
-                                            bundle.putString("pacienteGenero", jsonObject.getString("Sexo"));
-                                            bundle.putString("pacienteFechaNacimiento", jsonObject.getString("FechaNacimiento"));
-                                            bundle.putDouble("pacientePeso", jsonObject.getDouble("Peso"));
-                                            bundle.putDouble("pacienteAltura", jsonObject.getDouble("Altura"));
-                                            bundle.putString("pacienteTipoSangre", jsonObject.getString("TipoSangre"));
+                                            bundle.putString("pacienteNombres", jsonObjectResponse.getString("Nombres"));
+                                            bundle.putString("pacienteApellidos", jsonObjectResponse.getString("Apellidos"));
+                                            bundle.putString("pacienteGenero", jsonObjectResponse.getString("Sexo"));
+                                            bundle.putString("pacienteFechaNacimiento", jsonObjectResponse.getString("FechaNacimiento"));
+                                            bundle.putDouble("pacientePeso", jsonObjectResponse.getDouble("Peso"));
+                                            bundle.putDouble("pacienteAltura", jsonObjectResponse.getDouble("Altura"));
+                                            bundle.putString("pacienteTipoSangre", jsonObjectResponse.getString("TipoSangre"));
 
                                             navController.navigate(R.id.nav_home, bundle);
-                                            openSession();
+                                            openSession(jsonObjectResponse.getString("IdPaciente"));
 
                                             ((AppCompatActivity) getActivity()).getSupportActionBar().show();
                                             BottomNavigationView bottomNavView = (BottomNavigationView) getActivity().findViewById(R.id.bottom_nav_view);
@@ -177,8 +177,6 @@ public class LoginFragment extends Fragment {
                     requestQueue.add(jsonObjReq);
 
                 }
-
-
             }
         });
 
@@ -202,10 +200,11 @@ public class LoginFragment extends Fragment {
         });
     }
 
-    public void openSession( ){
+    public void openSession(String idPaciente){
         SharedPreferences prefs = getActivity().getSharedPreferences("PREFERENCIAS", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putBoolean("SESSION", true);
+        editor.putString("IdPaciente", idPaciente);
         editor.commit();
     }
 

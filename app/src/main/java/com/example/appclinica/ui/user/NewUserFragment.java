@@ -2,7 +2,9 @@ package com.example.appclinica.ui.user;
 
 import androidx.lifecycle.ViewModelProviders;
 
-import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,9 +23,19 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.appclinica.R;
 import com.example.appclinica.ui.helpers.Constants;
-import com.example.appclinica.ui.home.LoginFragment;
+
+import net.yslibrary.android.keyboardvisibilityevent.util.UIUtil;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.Calendar;
 
@@ -35,6 +48,19 @@ public class NewUserFragment extends Fragment {
     public static NewUserFragment newInstance() {
         return new NewUserFragment();
     }
+
+    private EditText etDocumentNumber;
+    private EditText etFirstName;
+    private EditText etLastName;
+    private RadioGroup rgGender;
+    private DatePicker dpBirthdate;
+    private EditText etPhoneNumber;
+    private EditText eteMail;
+    private EditText etBloodType;
+    private EditText etWeight;
+    private EditText etHeight;
+    private EditText etPassword;
+
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -105,7 +131,81 @@ public class NewUserFragment extends Fragment {
             public void onClick(View view) {
 //                getParentFragmentManager().beginTransaction().replace(R.id.login_layout, new LoginFragment()).commit();
                 if (validate(view)) {
-                    Toast.makeText(getContext(), R.string.newUser_msgSave, Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getContext(), R.string.newUser_msgSave, Toast.LENGTH_LONG).show();
+
+                    UIUtil.hideKeyboard(getActivity());
+                    final ProgressDialog progress = new ProgressDialog(getContext());
+                    progress.setTitle("Grabando...");
+                    progress.setMessage("Espere por favor...");
+                    progress.setCancelable(false);
+                    progress.show();
+
+                    final JSONObject jsonobject = new JSONObject();
+                    try {
+                        jsonobject.put("codTipo", "1");
+                        jsonobject.put("NumeroDocumento", etDocumentNumber.getText().toString());
+                        jsonobject.put("Nombres", etFirstName.getText().toString());
+                        jsonobject.put("Apellidos", etLastName.getText().toString());
+                        jsonobject.put("Sexo", rgGender.findViewById(rgGender.getCheckedRadioButtonId()).getTag());
+                        jsonobject.put("FechaNacimiento", dpBirthdate.getYear() + "-" + dpBirthdate.getMonth() + "-" + dpBirthdate.getDayOfMonth());
+                        jsonobject.put("Telefono", etPhoneNumber.getText().toString());
+                        jsonobject.put("Correo", eteMail.getText().toString());
+                        jsonobject.put("TipoSangre", etBloodType.getText().toString());
+                        jsonobject.put("Peso", etWeight.getText().toString());
+                        jsonobject.put("Altura", etHeight.getText().toString());
+                        jsonobject.put("Clave", etPassword.getText().toString());
+                        Log.i("======>", jsonobject.toString());
+                    } catch (JSONException e) {
+                        Log.i("======>", e.getMessage());
+                    }
+
+                    JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,
+                            Constants.WSUrlInsertarPaciente,jsonobject,
+                            new Response.Listener<JSONObject>() {
+                                @Override
+                                public void onResponse(JSONObject response) {
+
+                                    if (response.length() == 0) {
+                                        progress.dismiss();
+                                        Toast.makeText(getContext(), R.string.msgInsertUpdateWSError, Toast.LENGTH_LONG).show();
+                                    }
+                                    else {
+//                                            Bundle bundle = new Bundle();
+//                                            bundle.putString("pacienteNombres", jsonobject.getString("Nombres"));
+//                                            bundle.putString("pacienteApellidos", jsonobject.getString("Apellidos"));
+//                                            bundle.putString("pacienteGenero", jsonobject.getString("Sexo"));
+//                                            bundle.putString("pacienteFechaNacimiento", jsonobject.getString("FechaNacimiento"));
+//                                            bundle.putInt("pacientePeso", jsonobject.getInt("Peso"));
+//                                            bundle.putDouble("pacienteAltura", jsonobject.getDouble("Altura"));
+//                                            bundle.putString("pacienteTipoSangre", jsonobject.getString("TipoSangre"));
+
+                                        navController.navigate(R.id.newUserConfirmationFragment);
+                                        //openSession(jsonobject.getString("IdPaciente"));
+
+//                                            ((AppCompatActivity) getActivity()).getSupportActionBar().show();
+//                                            BottomNavigationView bottomNavView = (BottomNavigationView) getActivity().findViewById(R.id.bottom_nav_view);
+//                                            bottomNavView.setVisibility(View.VISIBLE);
+
+                                        progress.dismiss();
+
+                                    }
+                                }
+                            },
+                            new Response.ErrorListener() {
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+                                    error.printStackTrace();
+                                    progress.dismiss();
+                                }
+                            }
+
+                    );
+
+                    RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
+                    requestQueue.add(jsonObjReq);
+
+
+
                 }
             }
         });
@@ -115,17 +215,8 @@ public class NewUserFragment extends Fragment {
         boolean isValid = true;
 
 
-        EditText etDocumentNumber = (EditText) currentView.findViewById(R.id.new_user_etDocumentNumber);
-        String documentNumber = etDocumentNumber.getText().toString().trim();
-//        if(documentNumber.isEmpty()) {
-//            isValid = false;
-//            etDocumentNumber.setError(getText(R.string.validation_msgRequiredField));
-//        } else if(!documentNumber.matches(Constants.regExEmail)) {
-//            isValid = false;
-//            etDocumentNumber.setError(getText(R.string.validation_msgInvalidEmail));
-//        }
-
         //Número de documento
+        etDocumentNumber = (EditText) currentView.findViewById(R.id.new_user_etDocumentNumber);
         if (!validateEmptyField(etDocumentNumber)) {
             isValid = false;
         }
@@ -135,25 +226,25 @@ public class NewUserFragment extends Fragment {
 //        }
 
         //Nombres
-        EditText etFirstName = (EditText) currentView.findViewById(R.id.new_user_etFirstName);
+        etFirstName = (EditText) currentView.findViewById(R.id.new_user_etFirstName);
         if (!validateEmptyField(etFirstName)) {
             isValid = false;
         }
 
         //Apellidos
-        EditText etLastName = (EditText) currentView.findViewById(R.id.new_user_etLastName);
+        etLastName = (EditText) currentView.findViewById(R.id.new_user_etLastName);
         if (!validateEmptyField(etLastName)) {
             isValid = false;
         }
 
         //Genero
-        RadioGroup rgGender = (RadioGroup) currentView.findViewById(R.id.new_user_rgGender);
+        rgGender = (RadioGroup) currentView.findViewById(R.id.new_user_rgGender);
         if (rgGender.getCheckedRadioButtonId() == -1){
             Toast.makeText(getContext(), R.string.validation_msgInvalidGender, Toast.LENGTH_LONG).show();
         }
 
 //        //Fecha nacimiento
-        DatePicker dpBirthdate = (DatePicker) currentView.findViewById(R.id.new_user_dpBirthdate);
+        dpBirthdate = (DatePicker) currentView.findViewById(R.id.new_user_dpBirthdate);
         int currentYear = Calendar.getInstance().get(Calendar.YEAR);
         if((currentYear - dpBirthdate.getYear()) < 0) {
             isValid = false;
@@ -161,7 +252,7 @@ public class NewUserFragment extends Fragment {
         }
 
         //Telefono
-        EditText etPhoneNumber = (EditText) currentView.findViewById(R.id.new_user_etPhoneNumber);
+        etPhoneNumber = (EditText) currentView.findViewById(R.id.new_user_etPhoneNumber);
         String phoneNumber = etPhoneNumber.getText().toString().trim();
         if (!validateEmptyField(etPhoneNumber)) {
             isValid = false;
@@ -171,7 +262,7 @@ public class NewUserFragment extends Fragment {
         }
 
         //Correo
-        EditText eteMail = (EditText) currentView.findViewById(R.id.new_user_eteMail);
+        eteMail = (EditText) currentView.findViewById(R.id.new_user_eteMail);
         String eMail = eteMail.getText().toString().trim();
         if (!validateEmptyField(eteMail)) {
             isValid = false;
@@ -181,13 +272,28 @@ public class NewUserFragment extends Fragment {
         }
 
         //Tipo de sangre
-        EditText etBloodType = (EditText) currentView.findViewById(R.id.new_user_etBloodType);
+        etBloodType = (EditText) currentView.findViewById(R.id.new_user_etBloodType);
         if (!validateEmptyField(etBloodType)) {
             isValid = false;
         }
 
+        //Peso
+        etWeight = (EditText) currentView.findViewById(R.id.new_user_etWeight);
+        if (etWeight.getText().length() > 0 && Integer.valueOf(etWeight.getText().toString()) < 1){
+            isValid = false;
+            etWeight.setError(getText(R.string.validation_msgLessoeEqualThanZero));
+        }
+
+        //Altura
+        etHeight = (EditText) currentView.findViewById(R.id.new_user_etHeight);
+        if (etHeight.getText().length() > 0 && Double.valueOf(etHeight.getText().toString()) < 1){
+            isValid = false;
+            etWeight.setError(getText(R.string.validation_msgLessoeEqualThanZero));
+        }
+
+
         //Contraseña
-        EditText etPassword = (EditText) currentView.findViewById(R.id.new_user_etPassword);
+        etPassword = (EditText) currentView.findViewById(R.id.new_user_etPassword);
         if (!validateEmptyField(etPassword)) {
             isValid = false;
         }
@@ -207,6 +313,7 @@ public class NewUserFragment extends Fragment {
 
         return isValid;
     }
+
     private boolean validateEmptyField(EditText editText, int length) {
         boolean isValid = true;
 
@@ -221,5 +328,13 @@ public class NewUserFragment extends Fragment {
         }
 
         return isValid;
+    }
+
+    public void openSession(String idPaciente){
+        SharedPreferences prefs = getActivity().getSharedPreferences("PREFERENCIAS", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putBoolean("SESSION", true);
+        editor.putString("IdPaciente", idPaciente);
+        editor.commit();
     }
 }

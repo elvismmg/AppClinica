@@ -55,6 +55,9 @@
     <string name="newUser_PhoneNumber">Teléfono</string>
     <string name="newUser_eMail">Correo</string>
     <string name="newUser_BloodType">Tipo de Sangre</string>
+    <string name="newUser_Weight">Peso</string>
+    <string name="newUser_Height">Altura</string>
+
     <string name="newUser_Password">Contraseña</string>
     <string name="newUser_btnBack">Regresar</string>
     <string name="newUser_btnSave">Grabar</string>
@@ -69,8 +72,9 @@
     <string name="newUser_HintPhoneNumber">Ingresar su teléfono</string>
     <string name="newUser_HinteMail">Ingresar su correo</string>
     <string name="newUser_HintBloodType">Ingresar su tipo de sangre</string>
+    <string name="newUser_HintWeight">Ingresar su peso</string>
+    <string name="newUser_HintHeight">Ingresar su altura</string>
     <string name="newUser_HintPassword">Ingresar su contraseña</string>
-
 
 
     <!-- Centers fragment  -->
@@ -89,6 +93,8 @@
     <string name="changeUser_PhoneNumber">Teléfono</string>
     <string name="changeUser_eMail">Correo</string>
     <string name="changeUser_BloodType">Tipo de Sangre</string>
+    <string name="changeUser_Weight">Peso</string>
+    <string name="changeUser_Height">Altura</string>
     <string name="changeUser_Password">Contraseña</string>
     <string name="changeUser_btnBack">Regresar</string>
     <string name="changeUser_btnSave">Grabar</string>
@@ -103,6 +109,9 @@
     <string name="newUser_msgSend">Revise su correo electrónico</string>
     <string name="passwordRecovery_msgEmptyUsername">Por favor ingrese su usuario</string>
     <string name="passwordRecovery_msgSend">Revise su correo electrónico</string>
+
+    <!-- New user confirmation fragment -->
+    <string name="new_user_confirmation_btnLogin">Continuar</string>
 
     <!-- Bottom Navigation -->
     <string name="title_activity_login">LoginActivity</string>
@@ -122,6 +131,9 @@
     <string name="validation_msgInvalidGender">"Seleccione un género"</string>
     <string name="validation_msgInvalidBirthdate">"Fecha de cumpleaños inválido"</string>
     <string name="validation_msgLenghtField">La longitud del campo excede el límite permitido</string>
+    <string name="validation_msgLessoeEqualThanZero">"El campo no puede ser igual o menor a 0"</string>
+    <string name="msgNoInformation">No existe información</string>
+    <string name="msgInsertUpdateWSError">Hubo un error al grabar</string>
     <string name="google_maps_key">AIzaSyAAWhk6G9HsZYPNWYJXrSk1umiG2DhrCYc</string>
 
 

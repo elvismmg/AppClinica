@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layout_home"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ui.home.HomeFragment">
+
 
     <TextView
         android:id="@+id/text_home"
@@ -30,11 +31,11 @@
         android:layout_height="10dp" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/home_tvPaciente"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Perfil Clínico"
-        android:textSize="20sp"
+        android:layout_marginLeft="8dp"
+        android:textSize="22sp"
         android:textStyle="bold" />
 
     <Space
@@ -61,18 +62,20 @@
                 android:orientation="vertical">
 
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Sexo" />
+<!--                <TextView-->
+<!--                    android:id="@+id/home_tvPaciente"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textSize="20sp"-->
+<!--                    android:textStyle="bold" />-->
 
-                <EditText
-                    android:id="@+id/home_etGenero"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:enabled="false"/>
+<!--                <EditText-->
+<!--                    android:id="@+id/home_etGenero"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:ems="10"-->
+<!--                    android:inputType="textPersonName"-->
+<!--                    android:enabled="false"/>-->
 
                 <TextView
                     android:layout_width="match_parent"
@@ -126,11 +129,11 @@
                     android:inputType="textPersonName"
                     android:enabled="false" />
 
-                <Button
-                    android:id="@+id/btnMyInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Mis Datos" />
+<!--                <Button-->
+<!--                    android:id="@+id/btnMyInfo"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Mis Datos" />-->
 
 
             </LinearLayout>

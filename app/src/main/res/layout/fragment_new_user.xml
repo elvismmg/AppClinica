@@ -96,12 +96,14 @@
                 android:id="@+id/new_user_rbMale"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:tag="M"
                 android:text="@string/newUser_rbMale"
                 ></RadioButton>
             <RadioButton
                 android:id="@+id/new_user_rbFemale"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:tag="F"
                 android:text="@string/newUser_rbFemale"
                 ></RadioButton>
         </RadioGroup>
@@ -190,6 +192,43 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:hint="@string/newUser_HintBloodType"
+            android:singleLine="true"/>
+
+
+        <TextView android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorlabels"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:text="@string/newUser_Weight"/>
+
+        <EditText
+            android:id="@+id/new_user_etWeight"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:hint="@string/newUser_HintWeight"
+            android:inputType="number"
+            android:singleLine="true"/>
+
+        <TextView android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorlabels"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:text="@string/newUser_Height"/>
+
+        <EditText
+            android:id="@+id/new_user_etHeight"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:inputType="numberDecimal"
+            android:hint="@string/newUser_HintHeight"
             android:singleLine="true"/>
 
         <TextView android:layout_width="fill_parent"

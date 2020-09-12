@@ -1,5 +1,7 @@
 package com.example.appclinica.ui.home;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -67,34 +69,42 @@ public class HomeFragment extends Fragment {
         }
 
 
-        TextView etGenero = (TextView) root.findViewById(R.id.home_etGenero);
-        TextView etEdad = (TextView) root.findViewById(R.id.home_etEdad);
-        TextView etPeso = (TextView) root.findViewById(R.id.home_etPeso);
-        TextView etAltura = (TextView) root.findViewById(R.id.home_etAltura);
-        TextView etTipoSangre = (TextView) root.findViewById(R.id.home_etTipoSangre);
 
-        String genero = "";
-        if(bundle.getString("pacienteGenero") == "M") {
-            genero ="Masculino";
-        }
-        else {
-            genero ="Femenino";
-        }
 
-        etGenero.setText(genero);
+
+//        TextView etGenero = (TextView) root.findViewById(R.id.home_etGenero);
+        TextView tvPaciente = (TextView) root.findViewById(R.id.home_tvPaciente);
+        EditText etEdad = (EditText) root.findViewById(R.id.home_etEdad);
+        EditText etPeso = (EditText) root.findViewById(R.id.home_etPeso);
+        EditText etAltura = (EditText) root.findViewById(R.id.home_etAltura);
+        EditText etTipoSangre = (EditText) root.findViewById(R.id.home_etTipoSangre);
+
+//        String genero = "";
+//        if(bundle.getString("pacienteGenero") == "M") {
+//            genero ="Masculino";
+//        }
+//        else {
+//            genero ="Femenino";
+//        }
+
+//        etGenero.setText(genero);
+        tvPaciente.setText("Bienvenido " + bundle.getString("pacienteNombres") + " " + bundle.getString("pacienteApellidos"));
         etEdad.setText(String.valueOf(edad));
         etPeso.setText(String.valueOf(bundle.getDouble("pacientePeso")));
         etAltura.setText(String.valueOf(bundle.getDouble("pacienteAltura")));
         etTipoSangre.setText(bundle.getString("pacienteTipoSangre"));
 
 
-        Button btnMyInfo = (Button) root.findViewById(R.id.btnMyInfo);
-        btnMyInfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getParentFragmentManager().beginTransaction().replace(R.id.layout_home, new ChangeUserFragment()).commit();
-            }
-        });
+//        Button btnMyInfo = (Button) root.findViewById(R.id.btnMyInfo);
+//        btnMyInfo.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                FragmentManager fragmentManager = ((AppCompatActivity)getContext()).getSupportFragmentManager();
+//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//                fragmentTransaction.addToBackStack(null);
+//                fragmentTransaction.replace(R.id.fragment_home, new ChangeUserFragment()).commit();
+//            }
+//        });
 
         return root;
     }

@@ -97,4 +97,10 @@
         android:name="com.example.appclinica.ui.user.NewUserFragment"
         android:label="NewUserFragment" />
 
+
+    <fragment
+        android:id="@+id/newUserConfirmationFragment"
+        android:name="com.example.appclinica.ui.user.NewUserConfirmationFragment"
+        android:label="NewUserConfirmationFragment" />
+
 </navigation>

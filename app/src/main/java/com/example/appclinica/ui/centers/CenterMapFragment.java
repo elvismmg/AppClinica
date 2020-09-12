@@ -85,11 +85,10 @@ public class CenterMapFragment extends Fragment implements OnMapReadyCallback {
         if (bundle == null) {
             return;
         }
-
-        LatLng sydney = new LatLng(bundle.getDouble("centerLatitude"), bundle.getDouble("centerLongitude"));
-        map.addMarker(new MarkerOptions().position(sydney)
+        LatLng latLng = new LatLng(bundle.getDouble("centerLatitude"), bundle.getDouble("centerLongitude"));
+        map.addMarker(new MarkerOptions().position(latLng)
                 .title(bundle.getString("centerAddress")));
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 15.0f));
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15.0f));
 
         googleMap = map;
 
