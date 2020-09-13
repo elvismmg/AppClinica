@@ -54,14 +54,6 @@
         tools:layout="@layout/fragment_login" />
     <!--    tools:layout="@layout/fragment_session" /> -->
 
-    <!--
-        <activity
-            android:id="@+id/nav_session"
-            android:name="com.example.appclinica.LoginActivity"
-            android:label="@string/menu_closesession"
-            tools:layout="@layout/activity_login"/>
-    -->
-
     <fragment
         android:id="@+id/bottom_home"
         tools:layout="@layout/fragment_home"
