@@ -220,8 +220,6 @@ public class ChangeUserFragment extends Fragment {
                                 etHeight.setText(jsonObjectResponse.getString("Altura"));
                                 etPassword.setText(jsonObjectResponse.getString("Clave"));
 
-
-
                                 progress.dismiss();
 
                             } catch (JSONException e) {

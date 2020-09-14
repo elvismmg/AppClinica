@@ -8,6 +8,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +21,7 @@ import com.example.appclinica.R;
 public class RegistryPaso3Fragment extends Fragment {
 
     private RegistryPaso3ViewModel mViewModel;
+    private NavController navController;
 
     public static RegistryPaso3Fragment newInstance() {
         return new RegistryPaso3Fragment();
@@ -30,24 +33,20 @@ public class RegistryPaso3Fragment extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_registry_paso3, container, false);
 
+        navController = NavHostFragment.findNavController(this);
+
         final Button button1 = root.findViewById(R.id.btnRegresar3);
         final Button button2 = root.findViewById(R.id.btnContinuar3);
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_registry_paso1, new RegistryPaso2Fragment());
-                transaction.addToBackStack(null);
-                transaction.commit();
+                navController.navigate(R.id.bottom_registry2);
             }
         });
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_registry_paso1, new RegistryPaso4Fragment());
-                transaction.addToBackStack(null);
-                transaction.commit();
+                navController.navigate(R.id.bottom_registry4);
             }
         });
 

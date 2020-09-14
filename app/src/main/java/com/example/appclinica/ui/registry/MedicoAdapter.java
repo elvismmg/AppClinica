@@ -10,6 +10,8 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appclinica.R;
@@ -24,6 +26,8 @@ public class MedicoAdapter extends RecyclerView.Adapter<MedicoAdapter.MyViewHold
 
     private List<Medico> medicoList;
     private LayoutInflater inflater;
+    private Fragment fragment1;
+    private NavController navController;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
@@ -40,15 +44,19 @@ public class MedicoAdapter extends RecyclerView.Adapter<MedicoAdapter.MyViewHold
     public MedicoAdapter(List<Medico> medicoList) {
         this.medicoList = medicoList;
     }
-    public MedicoAdapter(Context ctx, List<Medico> medicoList) {
+    public MedicoAdapter(Context ctx, List<Medico> medicoList, RegistryPaso2Fragment fragment1) {
         this.medicoList = medicoList;
         this.inflater = LayoutInflater.from(ctx);
+        this.fragment1 = fragment1;
     }
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.medico_fila, parent, false);
+
+        navController = NavHostFragment.findNavController(fragment1);
+
         return new MyViewHolder(itemView);
     }
 

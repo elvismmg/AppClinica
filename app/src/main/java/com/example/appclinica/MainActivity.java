@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.appclinica.ui.centers.CentersFragment;
 import com.example.appclinica.ui.home.HomeFragment;
@@ -125,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         NavigationUI.setupWithNavController(navigationView, navController);
         NavigationUI.setupWithNavController(bottomNavView, navController);
 
-        closeSession();
+        //closeSession();
 
     }
 

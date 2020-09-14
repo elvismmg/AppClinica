@@ -54,6 +54,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
+                    android:enabled="false"
                     android:gravity="start|top"
                     android:text="Recuerda Acercarte 30 minutos antes de la cita reservada."
                     android:inputType="textMultiLine" />
@@ -70,6 +71,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
+                    android:enabled="false"
                     android:gravity="start|top"
                     android:text="Recuerda acercarte 30 minutos antes de la cita reservada.
 

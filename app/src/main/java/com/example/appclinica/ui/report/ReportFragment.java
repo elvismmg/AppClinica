@@ -1,10 +1,18 @@
 package com.example.appclinica.ui.report;
 
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
@@ -16,8 +24,19 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.appclinica.R;
 import com.example.appclinica.ui.dao.Citas;
+import com.example.appclinica.ui.helpers.Constants;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,21 +77,76 @@ public class ReportFragment extends Fragment {
     }
 
     private void prepareCitasData() {
-        Citas cita;
-        cita = new Citas("Medicina Interna", "Reservado", "02/09/2020", "TeleConsulta");
-        citasList.add(cita);
-        cita = new Citas("Psicología", "Finalizado", "27/08/2020", "Presencial");
-        citasList.add(cita);
-        cita = new Citas("Psicología", "Anulado", "26/08/2020", "Presencial");
-        citasList.add(cita);
-        cita = new Citas("Medicina Interna", "Finalizado", "02/07/2020", "Presencial");
-        citasList.add(cita);
-        cita = new Citas("Medicina Interna", "Finalizado", "02/06/2020", "TeleConsulta");
-        citasList.add(cita);
-        cita = new Citas("Medicina Interna", "Finalizado", "02/05/2020", "TeleConsulta");
-        citasList.add(cita);
 
-        mAdapter.notifyDataSetChanged();
+        SharedPreferences prefs = getActivity().getSharedPreferences("PREFERENCIAS", Context.MODE_PRIVATE);
+        String idPaciente = prefs.getAll().get("IdPaciente").toString();
+
+        String url = Constants.WSUrlGetCitas+"/" +idPaciente;
+
+        citasList.clear();
+
+        final ProgressDialog progress = new ProgressDialog(getContext());
+        progress.setTitle("Cargando...");
+        progress.setMessage("Espere por favor...");
+        progress.setCancelable(false);
+        progress.show();
+
+        StringRequest stringRequest= new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONArray jsonArray = new JSONArray(response);
+                    Log.i("======>", jsonArray.toString());
+
+                    if (jsonArray.length() == 0){
+                        Toast.makeText(getContext(), R.string.msgNoInformation, Toast.LENGTH_LONG).show();
+                    }else {
+                        Citas cita;
+                        List<String> items = new ArrayList<>();
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONObject object = jsonArray.getJSONObject(i);
+
+                            cita = new Citas(object.getString("idCita"),
+                                    object.getString("Fecha"),
+                                    object.getString("Hora"),
+                                    object.getString("nombreMedico"),
+                                    object.getString("especialidad"),
+                                    object.getString("nombrePaciente"),
+                                    object.getString("sede"),
+                                    object.getString("consultorio"),
+                                    object.getString("seguro"),
+                                    object.getString("Copago"),
+                                    object.getString("tipoCitaDesc"),
+                                    object.getString("estado"),
+                                    object.getString("estadoDesc"),
+                                    object.getString("Numero"),
+                                    object.getString("ImagenEvidenciaUrlA"),
+                                    object.getString("ImagenEvidenciaUrlB"),
+                                    object.getString("ImagenEvidenciaUrlC"));
+                            citasList.add(cita);
+                        }
+
+                        mAdapter.notifyDataSetChanged();
+                        progress.dismiss();
+
+                    }
+                } catch (JSONException e) {
+                    Log.i("======>", e.getMessage());
+                    progress.dismiss();
+                }
+            }
+        },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.i("======>", error.toString());
+                        progress.dismiss();
+                    }
+                }
+        );
+        RequestQueue requestQueue= Volley.newRequestQueue(getActivity());
+        requestQueue.add(stringRequest);
+
     }
 
 }

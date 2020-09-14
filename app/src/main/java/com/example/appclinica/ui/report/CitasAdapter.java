@@ -34,13 +34,14 @@ public class CitasAdapter extends RecyclerView.Adapter<CitasAdapter.MyViewHolder
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView especialidad, estado, fecha, tipo;
+        public TextView especialidad, estado, fecha, hora, tipo;
 
         public MyViewHolder(View view) {
             super(view);
             especialidad = (TextView) view.findViewById(R.id.especialidad);
             estado = (TextView) view.findViewById(R.id.estado);
             fecha = (TextView) view.findViewById(R.id.fecha);
+            hora = (TextView) view.findViewById(R.id.hora);
             tipo = (TextView) view.findViewById(R.id.tipo);
         }
     }
@@ -66,16 +67,35 @@ public class CitasAdapter extends RecyclerView.Adapter<CitasAdapter.MyViewHolder
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
         final Citas citas = citasList.get(position);
-        holder.especialidad.setText(citas.getEspecialidad());
-        holder.estado.setText(citas.getEstado());
-        holder.fecha.setText(citas.getFecha());
-        holder.tipo.setText(citas.getTipo());
+        //AAAA/MM/DD
+        final String fechaFormat = citas.getFecha().substring(8,10) + "/" +
+                                    citas.getFecha().substring(5,7) + "/" +
+                                    citas.getFecha().substring(0,4);
+
+        holder.especialidad.setText(citas.getNombreMedico() + " - " + citas.getEspecialidad());
+        holder.estado.setText(citas.getEstadoDesc());
+        holder.fecha.setText(fechaFormat);
+        holder.hora.setText(citas.getHora());
+        holder.tipo.setText(citas.getTipoCitaDesc());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(view.getContext(),citas.getEspecialidad(),Toast.LENGTH_SHORT).show();
-                navController.navigate(R.id.detailFragment);
+                //Toast.makeText(view.getContext(),citas.getEspecialidad(),Toast.LENGTH_SHORT).show();
+
+                Bundle datosAEnviar = new Bundle();
+                datosAEnviar.putString("txtIdCita2", citas.getIdCita());
+                datosAEnviar.putString("txtPaciente2", citas.getNombrePaciente());
+                datosAEnviar.putString("txtEspecialidad2", citas.getEspecialidad());
+                datosAEnviar.putString("txtMedico2", citas.getNombreMedico());
+                datosAEnviar.putString("txtSede2", citas.getSede());
+                datosAEnviar.putString("txtConsultorio2", citas.getConsultorio() );
+                datosAEnviar.putString("txtFecha2", citas.getFecha());
+                datosAEnviar.putString("txtHora2", citas.getHora());
+                datosAEnviar.putString("txtTipo2", citas.getTipoCitaDesc());
+                datosAEnviar.putString("txtEstado2", citas.getEstado());
+
+                navController.navigate(R.id.detailFragment, datosAEnviar);
             }
 
 
@@ -87,7 +107,5 @@ public class CitasAdapter extends RecyclerView.Adapter<CitasAdapter.MyViewHolder
     public int getItemCount() {
         return citasList.size();
     }
-
-
 
 }

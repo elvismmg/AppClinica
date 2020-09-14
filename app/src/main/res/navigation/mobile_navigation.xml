@@ -5,7 +5,6 @@
     android:id="@+id/mobile_navigation"
     app:startDestination="@+id/nav_login">
 
-
     <fragment
         android:id="@+id/nav_login"
         android:name="com.example.appclinica.ui.home.LoginFragment"
@@ -52,8 +51,7 @@
         android:id="@+id/nav_session"
         android:name="com.example.appclinica.ui.session.SessionFragment"
         android:label="@string/menu_closesession"
-        tools:layout="@layout/fragment_login" />
-    <!--    tools:layout="@layout/fragment_session" /> -->
+        tools:layout="@layout/fragment_session" />
 
     <fragment
         android:id="@+id/bottom_home"
@@ -66,6 +64,24 @@
         tools:layout="@layout/fragment_registry_paso1"
         android:label="@string/title_registry"
         android:name="com.example.appclinica.ui.registry.RegistryPaso1Fragment"/>
+
+    <fragment
+        android:id="@+id/bottom_registry2"
+        tools:layout="@layout/fragment_registry_paso2"
+        android:label="@string/title_registry"
+        android:name="com.example.appclinica.ui.registry.RegistryPaso2Fragment"/>
+
+    <fragment
+        android:id="@+id/bottom_registry3"
+        tools:layout="@layout/fragment_registry_paso3"
+        android:label="@string/title_registry"
+        android:name="com.example.appclinica.ui.registry.RegistryPaso3Fragment"/>
+
+    <fragment
+        android:id="@+id/bottom_registry4"
+        tools:layout="@layout/fragment_registry_paso4"
+        android:label="@string/title_registry"
+        android:name="com.example.appclinica.ui.registry.RegistryPaso4Fragment"/>
 
     <fragment
         android:id="@+id/bottom_report"

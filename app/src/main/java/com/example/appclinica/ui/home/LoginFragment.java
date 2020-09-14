@@ -138,6 +138,9 @@ public class LoginFragment extends Fragment {
                                             JSONObject jsonObjectResponse = response.getJSONObject(0);
 
                                             Bundle bundle = new Bundle();
+                                            bundle.putString("IdPaciente", jsonObjectResponse.getString("IdPaciente"));
+                                            bundle.putString("codTipo", jsonObjectResponse.getString("codTipo"));
+                                            bundle.putString("NumeroDocumento", jsonObjectResponse.getString("NumeroDocumento"));
                                             bundle.putString("pacienteNombres", jsonObjectResponse.getString("Nombres"));
                                             bundle.putString("pacienteApellidos", jsonObjectResponse.getString("Apellidos"));
                                             bundle.putString("pacienteGenero", jsonObjectResponse.getString("Sexo"));
