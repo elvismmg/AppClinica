@@ -102,6 +102,7 @@ public class ReportFragment extends Fragment {
 
                     if (jsonArray.length() == 0){
                         Toast.makeText(getContext(), R.string.msgNoInformation, Toast.LENGTH_LONG).show();
+                        progress.dismiss();
                     }else {
                         Citas cita;
                         List<String> items = new ArrayList<>();
