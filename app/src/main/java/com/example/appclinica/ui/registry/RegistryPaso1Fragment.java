@@ -112,16 +112,20 @@ public class RegistryPaso1Fragment extends Fragment {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                citaMemory = new CitaMemory();
-                saveDatosMemory(root);
 
-                Bundle datosAEnviar = new Bundle();
-                enviarDatos(datosAEnviar, citaMemory);
+                if (sedesList.size() > 0 && especialidadList.size() > 0){
+                    citaMemory = new CitaMemory();
+                    saveDatosMemory(root);
 
-                if ((citaMemory.getEspecialidad().equals(""))){
-                    Toast.makeText(getContext(), "Es necesario selecionar la Especialidad.", Toast.LENGTH_LONG).show();
+                    Bundle datosAEnviar = new Bundle();
+                    enviarDatos(datosAEnviar, citaMemory);
+                    if ((citaMemory.getEspecialidad().equals(""))){
+                        Toast.makeText(getContext(), "Es necesario selecionar la Especialidad.", Toast.LENGTH_LONG).show();
+                    }else{
+                        navController.navigate(R.id.bottom_registry2, datosAEnviar);
+                    }
                 }else{
-                    navController.navigate(R.id.bottom_registry2, datosAEnviar);
+                    Toast.makeText(getContext(), "Es necesario selecionar la Especialidad.", Toast.LENGTH_LONG).show();
                 }
             }
         });

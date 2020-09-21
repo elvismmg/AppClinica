@@ -213,18 +213,26 @@ public class RegistryPaso2Fragment extends Fragment {
             @Override
             public void onClick(View view) {
                 int tab = pestaña.getCurrentTab();
+                boolean bol = false;
 
                 if (tab == 1){
                     medicoHorarioList = mAdapter2.medicoHorarioList;
+                    if (radioGroup2 != null)if (radioGroup2.getChildCount()!=0) bol = true;
+                }else{
+                    if (radioGroup1 != null)if (radioGroup1.getChildCount()!=0) bol = true;
                 }
 
-                saveDatosMemory(view, tab);
-                if ((citaMemory.getHorario().equals(""))){
-                    Toast.makeText(getContext(), "Es necesario selecionar el Horario.", Toast.LENGTH_LONG).show();
+                if (medicoHorarioList.size() > 0){
+                    saveDatosMemory(view, tab);
+                    if ((citaMemory.getHorario().equals(""))){
+                        Toast.makeText(getContext(), "Es necesario selecionar el Horario.", Toast.LENGTH_LONG).show();
+                    }else{
+                        Bundle datosAEnviar = new Bundle();
+                        RegistryPaso1Fragment.enviarDatos(datosAEnviar,citaMemory);
+                        navController.navigate(R.id.bottom_registry3, datosAEnviar);
+                    }
                 }else{
-                    Bundle datosAEnviar = new Bundle();
-                    RegistryPaso1Fragment.enviarDatos(datosAEnviar,citaMemory);
-                    navController.navigate(R.id.bottom_registry3, datosAEnviar);
+                    Toast.makeText(getContext(), "Es necesario selecionar el Horario.", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -266,8 +274,10 @@ public class RegistryPaso2Fragment extends Fragment {
         if (tab == 0){
             selectedItem = radioGroup1.getCheckedRadioButtonId();
         }else{
-            selectedItem = radioGroup1.getCheckedRadioButtonId();
+            selectedItem = radioGroup2.getCheckedRadioButtonId();
         }
+
+        selectedItem = selectedItem - 1;
 
         //RadioButton primerRadio2 = (RadioButton) radioGroup2.getChildAt(0);
        //if (primerRadio2 != null) primerRadio2.setChecked(true);
