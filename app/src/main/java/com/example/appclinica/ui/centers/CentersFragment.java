@@ -1,7 +1,9 @@
 package com.example.appclinica.ui.centers;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +13,11 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentContainerView;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -58,10 +63,12 @@ public class CentersFragment extends Fragment {
 //            }
 //        });
 
+
         rvCenters = (RecyclerView)root.findViewById(R.id.centers_rvCenters);
         rvCenters.setLayoutManager(new LinearLayoutManager(getActivity()));
         try {
             loadInfo();
+            loadButtonEvents(root);
         } catch (DAOException e) {
             e.printStackTrace();
         }
@@ -167,5 +174,27 @@ public class CentersFragment extends Fragment {
 //
 //        RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
 //        requestQueue.add(jsonObjReq);
+    }
+
+    private void loadButtonEvents(View view) {
+//        CentersDAO centersDAO = new CentersDAO(getActivity().getBaseContext());
+//        List<CenterModel> centerList = centersDAO.GetAll();
+        view.findViewById(R.id.centers_btnShowAllCenters).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                CenterMapFragment centerMapFragment = new CenterMapFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("loadAllCenters", "1");
+                centerMapFragment.setArguments(bundle);
+
+                FragmentManager fragmentManager = ((AppCompatActivity)getContext()).getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.replace(R.id.layout_centers_mainFrame, centerMapFragment).commit();
+
+            }
+        });
+
     }
 }

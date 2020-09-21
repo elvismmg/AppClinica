@@ -112,4 +112,9 @@
         android:name="com.example.appclinica.ui.user.NewUserConfirmationFragment"
         android:label="NewUserConfirmationFragment" />
 
+    <fragment
+        android:id="@+id/registryConfirmationFragment"
+        android:name="com.example.appclinica.ui.registry.RegistryConfirmationFragment"
+        android:label="@string/RegistryConfirmation_title" />
+
 </navigation>

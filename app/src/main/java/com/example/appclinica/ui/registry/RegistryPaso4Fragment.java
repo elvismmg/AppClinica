@@ -1,9 +1,9 @@
 package com.example.appclinica.ui.registry;
 
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.app.ProgressDialog;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,25 +25,18 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.appclinica.R;
 import com.example.appclinica.ui.dao.CitaMemory;
-import com.example.appclinica.ui.dao.Citas;
-import com.example.appclinica.ui.dao.Medico;
 import com.example.appclinica.ui.helpers.Constants;
-import com.example.appclinica.ui.helpers.JsonArrayCustomRequest;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
+//import com.google.gson.Gson;
+//import com.google.gson.JsonObject;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.io.ByteArrayOutputStream;
+import java.util.Calendar;
 
 public class RegistryPaso4Fragment extends Fragment {
 
@@ -108,6 +102,10 @@ public class RegistryPaso4Fragment extends Fragment {
         progress.setCancelable(false);
         progress.show();
 
+        Calendar calendar = Calendar.getInstance();
+        String numeroCita = "C-" + calendar.get(Calendar.YEAR) + calendar.get(Calendar.MONTH) + calendar.get(Calendar.DAY_OF_MONTH) + "-" + (calendar.get(Calendar.HOUR) - 5) + calendar.get(Calendar.MINUTE) + calendar.get(Calendar.SECOND);
+
+
         String seguro = "";
         seguro = citaMemory.getSeguro();
         JSONObject jsonobject = new JSONObject();
@@ -117,14 +115,14 @@ public class RegistryPaso4Fragment extends Fragment {
             jsonobject.put("IdSede", citaMemory.getSede());
             jsonobject.put("IdConsultorio", citaMemory.getConsultorio());
             jsonobject.put("IdEmpresaSeguro", seguro);
-            jsonobject.put("Numero", "");
+            jsonobject.put("Numero", numeroCita);
             jsonobject.put("Tipo", citaMemory.getTipoCita());
             jsonobject.put("IdProgramacionAtencion", citaMemory.getHorario());
             jsonobject.put("Fecha", citaMemory.getFecha());
             jsonobject.put("Hora", citaMemory.getHora());
-            jsonobject.put("ImagenEvidenciaA", citaMemory.getImagen1());
-            jsonobject.put("ImagenEvidenciaB", citaMemory.getImagen2());
-            jsonobject.put("ImagenEvidenciaC", citaMemory.getImagen3());
+            jsonobject.put("ImgEvidenciaBaseA", GetBase64String(citaMemory.getImagenEvidenciaA()));
+            jsonobject.put("ImgEvidenciaBaseB", GetBase64String(citaMemory.getImagenEvidenciaB()));
+            jsonobject.put("ImgEvidenciaBaseC", GetBase64String(citaMemory.getImagenEvidenciaC()));
             Log.i("======>", jsonobject.toString());
         } catch (JSONException e) {
             e.printStackTrace();
@@ -142,8 +140,9 @@ public class RegistryPaso4Fragment extends Fragment {
                                 Toast.makeText(getContext(), R.string.msgInsertUpdateWSError2, Toast.LENGTH_LONG).show();
                                 progress.dismiss();
                             }else {
-                                navController.navigate(R.id.bottom_registry);
-                                Toast.makeText(getContext(),"Cita Reservada correctamente",Toast.LENGTH_LONG).show();
+                                //navController.navigate(R.id.bottom_registry);
+                                navController.navigate(R.id.registryConfirmationFragment);
+//                                Toast.makeText(getContext(),"Cita Reservada correctamente",Toast.LENGTH_LONG).show();
                                 //Toast.makeText(getContext(), R.string.msgInsertUpdateWSError2, Toast.LENGTH_LONG).show();
                             }
 
@@ -165,4 +164,14 @@ public class RegistryPaso4Fragment extends Fragment {
 
 
 
+    private String GetBase64String(byte[] byteArray){
+        if(byteArray == null || byteArray.length == 0)
+            return "";
+//
+//        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+//        bitmap.compress(Bitmap.CompressFormat.JPEG,100, byteArrayOutputStream);
+//        byte[] imageBytes = byteArrayOutputStream.toByteArray();
+
+        return Base64.encodeToString(byteArray, Base64.DEFAULT);
+    }
 }

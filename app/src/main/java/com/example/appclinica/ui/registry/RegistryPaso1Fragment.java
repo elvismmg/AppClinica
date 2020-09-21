@@ -1,8 +1,6 @@
 package com.example.appclinica.ui.registry;
 
-import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
@@ -23,7 +20,6 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavController;
@@ -35,14 +31,15 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.appclinica.MainActivity;
 import com.example.appclinica.R;
+import com.example.appclinica.ui.dao.CentersDAO;
 import com.example.appclinica.ui.dao.CitaMemory;
-import com.example.appclinica.ui.dao.Citas;
+import com.example.appclinica.ui.dao.DAOException;
 import com.example.appclinica.ui.dao.Especialidad;
 import com.example.appclinica.ui.dao.Sede;
 import com.example.appclinica.ui.dao.Seguro;
 import com.example.appclinica.ui.helpers.Constants;
+import com.example.appclinica.ui.models.CenterModel;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -56,7 +53,7 @@ public class RegistryPaso1Fragment extends Fragment {
     private RegistryPaso1ViewModel registryPaso1ViewModel;
     private NavController navController;
 
-    private List<Sede> sedesList = new ArrayList<>();
+    private List<CenterModel> sedesList = new ArrayList<>();
     private List<Especialidad> especialidadList = new ArrayList<>();
     private List<Seguro> seguroList = new ArrayList<>();
 
@@ -82,7 +79,11 @@ public class RegistryPaso1Fragment extends Fragment {
             }
         });
 
-        cargarSedes(root);
+        try {
+            cargarSedes(root);
+        } catch (DAOException e) {
+            e.printStackTrace();
+        }
         cargarEspecialidades(root);
         cargarSeguros(root);
 
@@ -154,8 +155,8 @@ public class RegistryPaso1Fragment extends Fragment {
             citaMemory.setTipoCita("1");
         }
         citaMemory.setTipoCitaT(radioButton.getText().toString());
-        citaMemory.setSede(sedesList.get(spinner1.getSelectedItemPosition()).getIdSede());
-        citaMemory.setSedeT(sedesList.get(spinner1.getSelectedItemPosition()).getNombre());
+        citaMemory.setSede(String.valueOf(sedesList.get(spinner1.getSelectedItemPosition()).getIdCenter()));
+        citaMemory.setSedeT(sedesList.get(spinner1.getSelectedItemPosition()).getName());
         citaMemory.setEspecialidad(especialidadList.get(spinner2.getSelectedItemPosition()).getIdEspecialidad());
         citaMemory.setEspecialidadT(especialidadList.get(spinner2.getSelectedItemPosition()).getNombre());
 
@@ -178,7 +179,7 @@ public class RegistryPaso1Fragment extends Fragment {
         citaMemory.setHora("");
     }
 
-    public void cargarSedes(View v){
+    public void cargarSedes(View v) throws DAOException {
 
         /*final ProgressDialog progress = new ProgressDialog(getContext());
         progress.setTitle("Cargando...");
@@ -188,6 +189,9 @@ public class RegistryPaso1Fragment extends Fragment {
          */
         final Spinner spinnerSede;
         final SedeAdapter adapterSede;
+
+        CentersDAO centersDAO = new CentersDAO(getActivity().getBaseContext());
+        sedesList = centersDAO.GetAll();
 
         spinnerSede         = (Spinner)v.findViewById(R.id.spinner_sede);
         adapterSede         = new SedeAdapter(getContext(), android.R.layout.simple_spinner_item, sedesList);
@@ -203,53 +207,55 @@ public class RegistryPaso1Fragment extends Fragment {
             }
         });
 
-        StringRequest stringRequest= new StringRequest(Request.Method.GET, Constants.WSUrlGetSedes, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONArray jsonArray = new JSONArray(response);
-                    Log.i("======>", jsonArray.toString());
+        spinnerSede.setAdapter(adapterSede);
 
-                    if (jsonArray.length() == 0){
-                        Toast.makeText(getContext(), R.string.msgNoInformation, Toast.LENGTH_LONG).show();
-                    }else {
-                        Sede sede;
-                        List<String> items = new ArrayList<>();
-                        for (int i = 0; i < jsonArray.length(); i++) {
-                            JSONObject object = jsonArray.getJSONObject(i);
-
-                            sede = new Sede(object.getString("IdSede"),
-                                    object.getString("Nombre"),
-                                    object.getString("Direccion"),
-                                    object.getString("Distrito"),
-                                    object.getDouble("UbicacionLatitud"),
-                                    object.getDouble("UbicacionLongitud"),
-                                    object.getString("FotoUrl"));
-                            sedesList.add(sede);
-                        }
-
-                        spinnerSede.setAdapter(adapterSede);
-                        //spinnerEspecialidad.setAdapter(adapterEspecialidad);
-                        //spinnerSeguro.setAdapter(adapterSeguro);
-                        //progress.dismiss();
-
-                    }
-                } catch (JSONException e) {
-                    Log.i("======>", e.getMessage());
-                    //progress.dismiss();
-                }
-            }
-        },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.i("======>", error.toString());
-                        //progress.dismiss();
-                    }
-                }
-        );
-        RequestQueue requestQueue= Volley.newRequestQueue(getActivity());
-        requestQueue.add(stringRequest);
+//        StringRequest stringRequest= new StringRequest(Request.Method.GET, Constants.WSUrlGetSedes, new Response.Listener<String>() {
+//            @Override
+//            public void onResponse(String response) {
+//                try {
+//                    JSONArray jsonArray = new JSONArray(response);
+//                    Log.i("======>", jsonArray.toString());
+//
+//                    if (jsonArray.length() == 0){
+//                        Toast.makeText(getContext(), R.string.msgNoInformation, Toast.LENGTH_LONG).show();
+//                    }else {
+//                        Sede sede;
+//                        List<String> items = new ArrayList<>();
+//                        for (int i = 0; i < jsonArray.length(); i++) {
+//                            JSONObject object = jsonArray.getJSONObject(i);
+//
+//                            sede = new Sede(object.getString("IdSede"),
+//                                    object.getString("Nombre"),
+//                                    object.getString("Direccion"),
+//                                    object.getString("Distrito"),
+//                                    object.getDouble("UbicacionLatitud"),
+//                                    object.getDouble("UbicacionLongitud"),
+//                                    object.getString("FotoUrl"));
+//                            sedesList.add(sede);
+//                        }
+//
+//                        spinnerSede.setAdapter(adapterSede);
+//                        //spinnerEspecialidad.setAdapter(adapterEspecialidad);
+//                        //spinnerSeguro.setAdapter(adapterSeguro);
+//                        //progress.dismiss();
+//
+//                    }
+//                } catch (JSONException e) {
+//                    Log.i("======>", e.getMessage());
+//                    //progress.dismiss();
+//                }
+//            }
+//        },
+//                new Response.ErrorListener() {
+//                    @Override
+//                    public void onErrorResponse(VolleyError error) {
+//                        Log.i("======>", error.toString());
+//                        //progress.dismiss();
+//                    }
+//                }
+//        );
+//        RequestQueue requestQueue= Volley.newRequestQueue(getActivity());
+//        requestQueue.add(stringRequest);
 
     }
 
@@ -314,8 +320,8 @@ public class RegistryPaso1Fragment extends Fragment {
 
         final SeguroAdapter adapterSeguro;
 
-        spinnerSeguro       = (Spinner)v.findViewById(R.id.spinner_seguro);
-        adapterSeguro       = new SeguroAdapter(getContext(), android.R.layout.simple_spinner_item, seguroList);
+        spinnerSeguro = (Spinner)v.findViewById(R.id.spinner_seguro);
+        adapterSeguro = new SeguroAdapter(getContext(), android.R.layout.simple_spinner_item, seguroList);
         adapterSeguro.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         spinnerSeguro.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -400,6 +406,10 @@ public class RegistryPaso1Fragment extends Fragment {
         datosAEnviar.putString("horario", citaMemory.getHorario());
         datosAEnviar.putString("fecha", citaMemory.getFecha());
         datosAEnviar.putString("hora", citaMemory.getHora());
+        datosAEnviar.putByteArray("imagenEvidenciaA", citaMemory.getImagenEvidenciaA());
+        datosAEnviar.putByteArray("imagenEvidenciaB", citaMemory.getImagenEvidenciaB());
+        datosAEnviar.putByteArray("imagenEvidenciaC", citaMemory.getImagenEvidenciaC());
+
     }
 
     static public CitaMemory recuperarDatos(Bundle datosRecuperados){
@@ -423,6 +433,9 @@ public class RegistryPaso1Fragment extends Fragment {
         citaMemory.setHorario(datosRecuperados.getString("horario"));
         citaMemory.setFecha(datosRecuperados.getString("fecha"));
         citaMemory.setHora(datosRecuperados.getString("hora"));
+        citaMemory.setImagenEvidenciaA(datosRecuperados.getByteArray("imagenEvidenciaA"));
+        citaMemory.setImagenEvidenciaB(datosRecuperados.getByteArray("imagenEvidenciaB"));
+        citaMemory.setImagenEvidenciaC(datosRecuperados.getByteArray("imagenEvidenciaC"));
 
         return citaMemory;
     }

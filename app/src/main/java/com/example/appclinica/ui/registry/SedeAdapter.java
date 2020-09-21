@@ -11,16 +11,17 @@ import androidx.annotation.NonNull;
 
 import com.example.appclinica.ui.dao.Citas;
 import com.example.appclinica.ui.dao.Sede;
+import com.example.appclinica.ui.models.CenterModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SedeAdapter extends ArrayAdapter<Sede> {
+public class SedeAdapter extends ArrayAdapter<CenterModel> {
 
     private Context context;
-    private List<Sede> listSedes;
+    private List<CenterModel> listSedes;
 
-    public SedeAdapter(Context context, int textViewResourceId, List<Sede> listSedes) {
+    public SedeAdapter(Context context, int textViewResourceId, List<CenterModel> listSedes) {
         super(context, textViewResourceId, listSedes);
         this.context = context;
         this.listSedes = listSedes;
@@ -30,7 +31,7 @@ public class SedeAdapter extends ArrayAdapter<Sede> {
         return listSedes.size();
     }
 
-    public Sede getItem(int position){
+    public CenterModel getItem(int position){
         return listSedes.get(position);
     }
 
@@ -43,7 +44,7 @@ public class SedeAdapter extends ArrayAdapter<Sede> {
         TextView label = new TextView(context);
         label.setTextSize(18);
         //label.setTypeface(null, Typeface.BOLD);
-        label.setText(listSedes.get(position).getNombre());
+        label.setText(listSedes.get(position).getName());
         return label;
     }
 
@@ -52,7 +53,7 @@ public class SedeAdapter extends ArrayAdapter<Sede> {
                                 ViewGroup parent) {
         TextView label = new TextView(context);
         label.setTextSize(18);
-        label.setText(listSedes.get(position).getNombre());
+        label.setText(listSedes.get(position).getName());
         return label;
     }
 

@@ -79,6 +79,7 @@
 
     <!-- Centers fragment  -->
     <string name="centers_Title">Sedes</string>
+    <string name="centers_btnShowAllCenters">Ver Sedes en Mapa</string>
 
     <!-- Update user -->
     <string name="changeUser_Title">Actualizar Datos del Paciente</string>
@@ -88,7 +89,6 @@
     <string name="changeUser_Gender">Sexo</string>
     <string name="changeUser_rbMale">Masculino</string>
     <string name="changeUser_rbFemale">Femenino</string>
-    changeUser_Gender
     <string name="changeUser_Birthdate">Fecha Nacimiento</string>
     <string name="changeUser_PhoneNumber">Teléfono</string>
     <string name="changeUser_eMail">Correo</string>
@@ -100,6 +100,12 @@
     <string name="changeUser_btnSave">Grabar</string>
 
     <string name="changeUser_msgSave">Se actualizaron los datos del paciente</string>
+
+
+    <!-- confirmacion de cita -->
+    <string name="RegistryConfirmation_title">Confirmación</string>
+    <string name="RegistryConfirmation_tvMessage">Cita Reservada correctamente</string>
+    <string name="RegistryConfirmation_btnContinue">Continuar</string>
 
     <!-- Login password recovery -->
     <string name="passwordRecovery_Title">Recuperar contraseña</string>
@@ -135,6 +141,7 @@
     <string name="msgNoInformation">No existe información</string>
     <string name="msgInsertUpdateWSError">Hubo un error al grabar</string>
     <string name="msgInsertUpdateWSError2">Hubo un error al grabar Cita</string>
+    <string name="titSelectImagesTitle">Seleccione una o varias imágenes</string>
     <string name="google_maps_key">AIzaSyAAWhk6G9HsZYPNWYJXrSk1umiG2DhrCYc</string>
 
 

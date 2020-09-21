@@ -185,7 +185,7 @@ public class HomeFragment extends Fragment {
         EditText etAltura = (EditText) root.findViewById(R.id.home_etAltura);
         EditText etTipoSangre = (EditText) root.findViewById(R.id.home_etTipoSangre);
 
-        if(paciente.getSexo() == "M") {
+        if(paciente.getSexo().equals("M")) {
             etGenero.setText("Masculino");
         }
         else {

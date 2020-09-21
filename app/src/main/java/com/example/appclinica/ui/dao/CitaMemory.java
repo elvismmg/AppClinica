@@ -20,9 +20,9 @@ public class CitaMemory {
     private String horario;
     private String fecha;
     private String hora;
-    private String imagen1;
-    private String imagen2;
-    private String imagen3;
+    private byte[] imagenEvidenciaA;
+    private byte[] imagenEvidenciaB;
+    private byte[] imagenEvidenciaC;
 
     /*
     public CitaMemory(String paciente, String pacienteNombre, String tipoCita, String tipoCitaT,
@@ -193,27 +193,29 @@ public class CitaMemory {
         this.hora = hora;
     }
 
-    public String getImagen1() {
-        return imagen1;
+
+
+    public byte[] getImagenEvidenciaA() {
+        return imagenEvidenciaA;
     }
 
-    public void setImagen1(String imagen1) {
-        this.imagen1 = imagen1;
+    public void setImagenEvidenciaA(byte[] byteArray) {
+        this.imagenEvidenciaA = byteArray;
     }
 
-    public String getImagen2() {
-        return imagen2;
+    public byte[] getImagenEvidenciaB() {
+        return imagenEvidenciaB;
     }
 
-    public void setImagen2(String imagen2) {
-        this.imagen2 = imagen2;
+    public void setImagenEvidenciaB(byte[] byteArray) {
+        this.imagenEvidenciaB = byteArray;
     }
 
-    public String getImagen3() {
-        return imagen3;
+    public byte[] getImagenEvidenciaC() {
+        return imagenEvidenciaC;
     }
 
-    public void setImagen3(String imagen3) {
-        this.imagen3 = imagen3;
+    public void setImagenEvidenciaC(byte[] byteArray) {
+        this.imagenEvidenciaC = byteArray;
     }
 }

@@ -53,6 +53,7 @@ public class CentersAdapter extends RecyclerView.Adapter<CentersAdapter.MyViewHo
                 bundle.putString("centerAddress", centerModel.getAddress());
                 bundle.putDouble("centerLatitude", centerModel.getLatitude());
                 bundle.putDouble("centerLongitude", centerModel.getLongitude());
+                bundle.putString("loadAllCenters", "0");
                 centerMapFragment.setArguments(bundle);
 
                 //centerMapFragment.getParentFragmentManager().beginTransaction().replace(R.id.layout_main, centerMapFragment).commit();

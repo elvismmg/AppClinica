@@ -3,6 +3,7 @@ package com.example.appclinica.ui.helpers;
 public class Constants {
     public static final String regExEmail = "^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$";
     public static final String regExPhoneNumber = "^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\\s\\./0-9]*$";
+    public static final int CODE_MULTIPLE_IMG_GALLERY = 2;
 
     public static final String WSUrlLoginPaciente = "http://portusalud.atwebpages.com/index.php/buscarPaciente";
     public static final String WSUrlBuscarPacientePorId = "http://portusalud.atwebpages.com/index.php/buscarPacientePorId";
@@ -18,5 +19,5 @@ public class Constants {
     public static final String WSUrlGetMedicos1 = "http://portusalud.atwebpages.com/index.php/listarMedicos1";
     public static final String WSUrlGetMedicos2 = "http://portusalud.atwebpages.com/index.php/listarMedicos2";
     public static final String WSUrlGetProgramacion = "http://portusalud.atwebpages.com/index.php/listarProgramacion";
-    public static final String WSUrlInsertarCita = "http://portusalud.atwebpages.com/index.php/insertarCita0";
+    public static final String WSUrlInsertarCita = "http://portusalud.atwebpages.com/index.php/insertarCita";
 }

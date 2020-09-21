@@ -18,15 +18,22 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.appclinica.R;
+import com.example.appclinica.ui.dao.CentersDAO;
+import com.example.appclinica.ui.dao.DAOException;
+import com.example.appclinica.ui.models.CenterModel;
 import com.example.appclinica.ui.registry.RegistryPaso2Fragment;
 import com.example.appclinica.ui.user.ChangeUserFragment;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.List;
 
 public class CenterMapFragment extends Fragment implements OnMapReadyCallback {
 
@@ -85,10 +92,35 @@ public class CenterMapFragment extends Fragment implements OnMapReadyCallback {
         if (bundle == null) {
             return;
         }
-        LatLng latLng = new LatLng(bundle.getDouble("centerLatitude"), bundle.getDouble("centerLongitude"));
-        map.addMarker(new MarkerOptions().position(latLng)
-                .title(bundle.getString("centerAddress")));
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15.0f));
+
+        if (bundle.getString("loadAllCenters") == "1") {
+
+            CentersDAO centersDAO = new CentersDAO(getActivity().getBaseContext());
+            try {
+                List<CenterModel> centerList = centersDAO.GetAll();
+                LatLngBounds.Builder builder = new LatLngBounds.Builder();
+
+                for (CenterModel item : centerList) {
+
+                    MarkerOptions markerOptions = new MarkerOptions().position(new LatLng(item.getLatitude(), item.getLongitude())).title(item.getName());
+                    map.addMarker(markerOptions);
+                    builder.include(markerOptions.getPosition());
+                }
+
+                LatLngBounds bounds = builder.build();
+                CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, 120);
+                map.animateCamera(cu);
+
+            } catch (DAOException e) {
+                e.printStackTrace();
+            }
+        }
+        else {
+            LatLng latLng = new LatLng(bundle.getDouble("centerLatitude"), bundle.getDouble("centerLongitude"));
+            map.addMarker(new MarkerOptions().position(latLng)
+                    .title(bundle.getString("centerAddress")));
+            map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15.0f));
+        }
 
         googleMap = map;
 
