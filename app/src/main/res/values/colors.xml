@@ -8,4 +8,6 @@
     <color name="colorTheme">#2196F3</color>
     <color name="colorCardSelected">#2196F3</color>
     <color name="colorCard">#FFFFFF</color>
+    <color name="coloreClickableLink">#1C14EF</color>
+
 </resources>

@@ -56,20 +56,7 @@ public class ContactFragment extends Fragment {
         });
 
         datosMaestros(root);
-        final TextView textView7 = (TextView) root.findViewById(R.id.telefonoEmpresa);
-        final TextView textView8 = (TextView) root.findViewById(R.id.celularEmpresa);
-        final ImageView imagenContacto4 = root.findViewById(R.id.ImagenContacto4);
-        imagenContacto4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String telefono = "tel:" + textView7.getText().toString().trim();
-                Intent i = new Intent(Intent.ACTION_CALL, Uri.parse(telefono));
-                if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CALL_PHONE)
-                        != PackageManager.PERMISSION_GRANTED)
-                    return;
-                startActivity(i);
-            }
-        });
+        loadEvents(root);
 
         return root;
     }
@@ -114,7 +101,9 @@ public class ContactFragment extends Fragment {
                         textView5.setText(object.getString("pagFacebook"));
                         textView6.setText(object.getString("correo"));
                         textView7.setText(object.getString("telefono1"));
-                        textView8.setText(object.getString("telefono2") + "/" + object.getString("telefono3"));
+                        textView8.setText(object.getString("telefono2"));
+
+                        //textView8.setText(object.getString("telefono2") + "/" + object.getString("telefono3"));
                         //progress.dismiss();
                     }
                 } catch (JSONException e) {
@@ -135,6 +124,63 @@ public class ContactFragment extends Fragment {
         requestQueue.add(stringRequest);
 
 
+    }
+
+    private void loadEvents(View root){
+        final TextView tvurlEmpresa = (TextView) root.findViewById(R.id.urlEmpresa);
+        final TextView tvCorreoEmpresa = (TextView) root.findViewById(R.id.correoEmpresa);
+        final TextView tvTelefonoEmpresa = (TextView) root.findViewById(R.id.telefonoEmpresa);
+        final TextView tvCelularEmpresa = (TextView) root.findViewById(R.id.celularEmpresa);
+        final ImageView imagenContacto4 = root.findViewById(R.id.ImagenContacto4);
+
+
+        tvCorreoEmpresa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                Uri data = Uri.parse("mailto:" + tvCorreoEmpresa.getText() +"?subject=Contacto");
+                intent.setData(data);
+                startActivity(intent);
+            }
+        });
+
+        tvurlEmpresa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(tvurlEmpresa.getText().toString()));
+                startActivity(i);
+            }
+        });
+
+        tvTelefonoEmpresa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String telefono = "tel:" + tvTelefonoEmpresa.getText().toString().trim();
+                Intent i = new Intent(Intent.ACTION_CALL, Uri.parse(telefono));
+                if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.CALL_PHONE}, 130);
+                }
+                else {
+                    startActivity(i);
+                }
+            }
+        });
+
+        tvCelularEmpresa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String telefono = "tel:" + tvCelularEmpresa.getText().toString().trim();
+                Intent i = new Intent(Intent.ACTION_CALL, Uri.parse(telefono));
+                if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CALL_PHONE)
+                        != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.CALL_PHONE}, 130);
+                }
+                else {
+                    startActivity(i);
+                }
+            }
+        });
     }
 
 }
