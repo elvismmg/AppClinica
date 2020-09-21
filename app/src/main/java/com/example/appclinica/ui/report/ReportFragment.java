@@ -91,6 +91,8 @@ public class ReportFragment extends Fragment {
         progress.setCancelable(false);
         progress.show();
 
+        Log.i("======>", url);
+
         StringRequest stringRequest= new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -120,9 +122,9 @@ public class ReportFragment extends Fragment {
                                     object.getString("estado"),
                                     object.getString("estadoDesc"),
                                     object.getString("Numero"),
-                                    object.getString("ImagenEvidenciaUrlA"),
-                                    object.getString("ImagenEvidenciaUrlB"),
-                                    object.getString("ImagenEvidenciaUrlC"));
+                                    object.getString("ImagenEvidenciaA"),
+                                    object.getString("ImagenEvidenciaB"),
+                                    object.getString("ImagenEvidenciaC"));
                             citasList.add(cita);
                         }
 

@@ -128,6 +128,8 @@ public class DetailFragment extends Fragment {
         progress.setCancelable(false);
         progress.show();
 
+        Log.i("======>", url);
+
         StringRequest stringRequest= new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
