@@ -15,4 +15,8 @@ public class Constants {
     public static final String WSUrlAnularCita = "http://portusalud.atwebpages.com/index.php/anularCita";
     public static final String WSUrlDatosMaestros = "http://portusalud.atwebpages.com/index.php/datosMaestros";
     public static final String WSUrlGetEspecilidades = "http://portusalud.atwebpages.com/index.php/listarEspecialidades";
+    public static final String WSUrlGetMedicos1 = "http://portusalud.atwebpages.com/index.php/listarMedicos1";
+    public static final String WSUrlGetMedicos2 = "http://portusalud.atwebpages.com/index.php/listarMedicos2";
+    public static final String WSUrlGetProgramacion = "http://portusalud.atwebpages.com/index.php/listarProgramacion";
+    public static final String WSUrlInsertarCita = "http://portusalud.atwebpages.com/index.php/insertarCita0";
 }

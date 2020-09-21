@@ -1,16 +1,24 @@
 package com.example.appclinica.ui.contact;
 
+import android.Manifest;
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -21,6 +29,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.appclinica.MainActivity;
 import com.example.appclinica.R;
 import com.example.appclinica.ui.helpers.Constants;
 
@@ -47,6 +56,20 @@ public class ContactFragment extends Fragment {
         });
 
         datosMaestros(root);
+        final TextView textView7 = (TextView) root.findViewById(R.id.telefonoEmpresa);
+        final TextView textView8 = (TextView) root.findViewById(R.id.celularEmpresa);
+        final ImageView imagenContacto4 = root.findViewById(R.id.ImagenContacto4);
+        imagenContacto4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String telefono = "tel:" + textView7.getText().toString().trim();
+                Intent i = new Intent(Intent.ACTION_CALL, Uri.parse(telefono));
+                if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CALL_PHONE)
+                        != PackageManager.PERMISSION_GRANTED)
+                    return;
+                startActivity(i);
+            }
+        });
 
         return root;
     }

@@ -13,6 +13,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -35,6 +37,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.appclinica.MainActivity;
 import com.example.appclinica.R;
+import com.example.appclinica.ui.dao.CitaMemory;
 import com.example.appclinica.ui.dao.Citas;
 import com.example.appclinica.ui.dao.Especialidad;
 import com.example.appclinica.ui.dao.Sede;
@@ -57,6 +60,8 @@ public class RegistryPaso1Fragment extends Fragment {
     private List<Especialidad> especialidadList = new ArrayList<>();
     private List<Seguro> seguroList = new ArrayList<>();
 
+    private CitaMemory citaMemory;
+
     public static RegistryPaso1Fragment newInstance() {
         return new RegistryPaso1Fragment();
     }
@@ -65,7 +70,7 @@ public class RegistryPaso1Fragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         registryPaso1ViewModel =
                 ViewModelProviders.of(this).get(RegistryPaso1ViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_registry_paso1, container, false);
+        final View root = inflater.inflate(R.layout.fragment_registry_paso1, container, false);
         final TextView textView = root.findViewById(R.id.text_registry);
 
         navController = NavHostFragment.findNavController(this);
@@ -107,18 +112,66 @@ public class RegistryPaso1Fragment extends Fragment {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                citaMemory = new CitaMemory();
+                saveDatosMemory(root);
 
-                navController.navigate(R.id.bottom_registry2);
+                Bundle datosAEnviar = new Bundle();
+                enviarDatos(datosAEnviar, citaMemory);
 
-                /*FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_registry_paso1, new RegistryPaso2Fragment() );
-                transaction.addToBackStack(null);
-                transaction.commit();
-                 */
+                if ((citaMemory.getEspecialidad().equals(""))){
+                    Toast.makeText(getContext(), "Es necesario selecionar la Especialidad.", Toast.LENGTH_LONG).show();
+                }else{
+                    navController.navigate(R.id.bottom_registry2, datosAEnviar);
+                }
             }
         });
 
         return root;
+    }
+
+    private void saveDatosMemory(View root){
+        SharedPreferences prefs = getActivity().getSharedPreferences("PREFERENCIAS", Context.MODE_PRIVATE);
+        String idPaciente = prefs.getAll().get("IdPaciente").toString();
+        String nombrePaciente = prefs.getAll().get("NombrePaciente").toString();
+
+        Switch switch1 = (Switch) root.findViewById(R.id.switch1);
+        Spinner spinner1 = (Spinner) root.findViewById(R.id.spinner_sede);
+        Spinner spinner2 = (Spinner) root.findViewById(R.id.spinner_especialidad);
+        Spinner spinner3 = (Spinner) root.findViewById(R.id.spinner_seguro);
+        RadioGroup radioGroup = (RadioGroup) root.findViewById(R.id.radioGroup);
+        int selectedId = radioGroup.getCheckedRadioButtonId();
+        RadioButton radioButton = (RadioButton) root.findViewById(selectedId);
+
+        citaMemory.setPaciente(idPaciente);
+        citaMemory.setPacienteNombre(nombrePaciente);
+        if (radioButton.getText().toString().equals("Presencial")){
+            citaMemory.setTipoCita("2");
+        }else{
+            citaMemory.setTipoCita("1");
+        }
+        citaMemory.setTipoCitaT(radioButton.getText().toString());
+        citaMemory.setSede(sedesList.get(spinner1.getSelectedItemPosition()).getIdSede());
+        citaMemory.setSedeT(sedesList.get(spinner1.getSelectedItemPosition()).getNombre());
+        citaMemory.setEspecialidad(especialidadList.get(spinner2.getSelectedItemPosition()).getIdEspecialidad());
+        citaMemory.setEspecialidadT(especialidadList.get(spinner2.getSelectedItemPosition()).getNombre());
+
+        if (switch1.isChecked()){
+            citaMemory.setSeguro(seguroList.get(spinner3.getSelectedItemPosition()).getIdEmpresaSeguro());
+            citaMemory.setSeguroT(seguroList.get(spinner3.getSelectedItemPosition()).getNombre());
+            citaMemory.setCopago(seguroList.get(spinner3.getSelectedItemPosition()).getCopago());
+        }else{
+            citaMemory.setSeguro("");
+            citaMemory.setSeguroT("");
+            citaMemory.setCopago("");
+        }
+
+        citaMemory.setMedico("");
+        citaMemory.setNombreMedico("");
+        citaMemory.setConsultorio("");
+        citaMemory.setConsultorioT("");
+        citaMemory.setHorario("");
+        citaMemory.setFecha("");
+        citaMemory.setHora("");
     }
 
     public void cargarSedes(View v){
@@ -128,25 +181,13 @@ public class RegistryPaso1Fragment extends Fragment {
         progress.setMessage("Espere por favor...");
         progress.setCancelable(false);
         progress.show();
-
          */
-        //final Spinner spinnerSede, spinnerEspecialidad, spinnerSeguro;
         final Spinner spinnerSede;
         final SedeAdapter adapterSede;
-        //final EspecialidadAdapter adapterEspecialidad;
-        //final SeguroAdapter adapterSeguro;
 
         spinnerSede         = (Spinner)v.findViewById(R.id.spinner_sede);
-        //spinnerEspecialidad = (Spinner)v.findViewById(R.id.spinner_especialidad);
-        //spinnerSeguro       = (Spinner)v.findViewById(R.id.spinner_seguro);
-
         adapterSede         = new SedeAdapter(getContext(), android.R.layout.simple_spinner_item, sedesList);
-        //adapterEspecialidad = new EspecialidadAdapter(getContext(), android.R.layout.simple_spinner_item, especialidadList);
-        //adapterSeguro       = new SeguroAdapter(getContext(), android.R.layout.simple_spinner_item, seguroList);
-
         adapterSede.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        //adapterEspecialidad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        //adapterSeguro.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         spinnerSede.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -210,13 +251,6 @@ public class RegistryPaso1Fragment extends Fragment {
 
     public void cargarEspecialidades(View v){
 
-        /*final ProgressDialog progress = new ProgressDialog(getContext());
-        progress.setTitle("Cargando...");
-        progress.setMessage("Espere por favor...");
-        progress.setCancelable(false);
-        progress.show();
-
-         */
         final Spinner spinnerEspecialidad;
         final EspecialidadAdapter adapterEspecialidad;
 
@@ -271,13 +305,6 @@ public class RegistryPaso1Fragment extends Fragment {
 
     public void cargarSeguros(View v){
 
-        /*final ProgressDialog progress = new ProgressDialog(getContext());
-        progress.setTitle("Cargando...");
-        progress.setMessage("Espere por favor...");
-        progress.setCancelable(false);
-        progress.show();
-
-         */
         final Spinner spinnerSeguro;
         final TextView txtCopago = v.findViewById(R.id.txtCopago);
 
@@ -344,6 +371,56 @@ public class RegistryPaso1Fragment extends Fragment {
         requestQueue.add(stringRequest);
 
     }
+    /*String paciente, String pacienteNombre, String tipoCita, String tipoCitaT,
+    String sede, String sedeT, String especialidad, String especialidadT,
+    String seguro, String seguroT, String copago, String medico, String nombreMedico,
+    String consultorio, String consultorioT, String horario, String fecha, String hora
+     */
+    static public void enviarDatos(Bundle datosAEnviar, CitaMemory citaMemory){
+        //Bundle datosAEnviar = new Bundle();
+        datosAEnviar.putString("paciente", citaMemory.getPaciente());
+        datosAEnviar.putString("pacienteNombre", citaMemory.getPacienteNombre());
+        datosAEnviar.putString("tipoCita", citaMemory.getTipoCita());
+        datosAEnviar.putString("tipoCitaT", citaMemory.getTipoCitaT());
+        datosAEnviar.putString("sede", citaMemory.getSede());
+        datosAEnviar.putString("sedeT", citaMemory.getSedeT());
+        datosAEnviar.putString("especialidad", citaMemory.getEspecialidad());
+        datosAEnviar.putString("especialidadT", citaMemory.getEspecialidadT());
+        datosAEnviar.putString("seguro", citaMemory.getSeguro());
+        datosAEnviar.putString("seguroT", citaMemory.getSeguroT());
+        datosAEnviar.putString("copago", citaMemory.getCopago());
+        datosAEnviar.putString("medico", citaMemory.getMedico());
+        datosAEnviar.putString("nombreMedico", citaMemory.getNombreMedico());
+        datosAEnviar.putString("consultorio", citaMemory.getConsultorio());
+        datosAEnviar.putString("consultorioT", citaMemory.getConsultorioT());
+        datosAEnviar.putString("horario", citaMemory.getHorario());
+        datosAEnviar.putString("fecha", citaMemory.getFecha());
+        datosAEnviar.putString("hora", citaMemory.getHora());
+    }
 
+    static public CitaMemory recuperarDatos(Bundle datosRecuperados){
+        //Bundle datosRecuperados = getArguments();
+        CitaMemory citaMemory = new CitaMemory();
+        citaMemory.setPaciente(datosRecuperados.getString("paciente"));
+        citaMemory.setPacienteNombre(datosRecuperados.getString("pacienteNombre"));
+        citaMemory.setTipoCita(datosRecuperados.getString("tipoCita"));
+        citaMemory.setTipoCitaT(datosRecuperados.getString("tipoCitaT"));
+        citaMemory.setSede(datosRecuperados.getString("sede"));
+        citaMemory.setSedeT(datosRecuperados.getString("sedeT"));
+        citaMemory.setEspecialidad(datosRecuperados.getString("especialidad"));
+        citaMemory.setEspecialidadT(datosRecuperados.getString("especialidadT"));
+        citaMemory.setSeguro(datosRecuperados.getString("seguro"));
+        citaMemory.setSeguroT(datosRecuperados.getString("seguroT"));
+        citaMemory.setCopago(datosRecuperados.getString("copago"));
+        citaMemory.setMedico(datosRecuperados.getString("medico"));
+        citaMemory.setNombreMedico(datosRecuperados.getString("nombreMedico"));
+        citaMemory.setConsultorio(datosRecuperados.getString("consultorio"));
+        citaMemory.setConsultorioT(datosRecuperados.getString("consultorioT"));
+        citaMemory.setHorario(datosRecuperados.getString("horario"));
+        citaMemory.setFecha(datosRecuperados.getString("fecha"));
+        citaMemory.setHora(datosRecuperados.getString("hora"));
+
+        return citaMemory;
+    }
 
 }

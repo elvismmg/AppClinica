@@ -82,6 +82,7 @@ public class HomeFragment extends Fragment {
                                     bundle.getString("pacienteTipoSangre"), String.valueOf(bundle.getDouble("pacientePeso")),
                                     String.valueOf(bundle.getDouble("pacienteAltura")));
             setDatosHome(root, paciente);
+
         }else {
             getPaciente(root);
         }
@@ -155,6 +156,12 @@ public class HomeFragment extends Fragment {
     }
 
     public void setDatosHome(View root, Paciente paciente){
+
+        String nombrePaciente = paciente.getNombres() + " " + paciente.getApellidos();
+        SharedPreferences prefs = getActivity().getSharedPreferences("PREFERENCIAS", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("NombrePaciente", nombrePaciente);
+        editor.commit();
 
         SimpleDateFormat fechaNacimientoParse = new SimpleDateFormat("yyyy-MM-dd");
         int edad = 0;

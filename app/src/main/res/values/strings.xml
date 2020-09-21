@@ -134,6 +134,7 @@
     <string name="validation_msgLessoeEqualThanZero">"El campo no puede ser igual o menor a 0"</string>
     <string name="msgNoInformation">No existe información</string>
     <string name="msgInsertUpdateWSError">Hubo un error al grabar</string>
+    <string name="msgInsertUpdateWSError2">Hubo un error al grabar Cita</string>
     <string name="google_maps_key">AIzaSyAAWhk6G9HsZYPNWYJXrSk1umiG2DhrCYc</string>
 
 
