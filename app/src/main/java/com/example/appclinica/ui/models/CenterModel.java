@@ -2,20 +2,34 @@ package com.example.appclinica.ui.models;
 
 public class CenterModel {
 
+    private int IdCenter;
     private String Name;
     private String Address;
     private String City;
     private double Latitude;
     private double Longitude;
+    private String PhotoUrl;
 
-    public CenterModel(String name, String address, String city, double latitude, double longitude) {
+    public CenterModel() {
+    }
+
+    public CenterModel(int idCenter, String name, String address, String city, double latitude, double longitude) {
         Name = name;
         Address = address;
         City = city;
         Latitude = latitude;
         Longitude = longitude;
+        IdCenter = idCenter;
+        PhotoUrl = "";
     }
 
+    public int getIdCenter() {
+        return IdCenter;
+    }
+
+    public void setIdCenter(int idCenter) {
+        IdCenter = idCenter;
+    }
 
     public String getName() {
         return Name;
@@ -55,5 +69,13 @@ public class CenterModel {
 
     public void setLongitude(double longitude) {
         Longitude = longitude;
+    }
+
+    public String getPhotoUrl() {
+        return PhotoUrl;
+    }
+
+    public void setPhotoUrl(String photoUrl) {
+        PhotoUrl = photoUrl;
     }
 }
