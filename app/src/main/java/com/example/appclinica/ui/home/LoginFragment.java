@@ -160,7 +160,7 @@ public class LoginFragment extends Fragment {
 //                                            BottomNavigationView bottomNavView = (BottomNavigationView) getActivity().findViewById(R.id.bottom_nav_view);
 //                                            bottomNavView.setVisibility(View.VISIBLE);
 
-                                            progress.dismiss();
+                                            //progress.dismiss();
 
                                         } catch (JSONException e) {
                                             e.printStackTrace();

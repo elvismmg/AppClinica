@@ -132,7 +132,7 @@ public class RegistryPaso2Fragment extends Fragment {
         calendario1 = (CalendarView) root.findViewById(R.id.calendario1);
         calendario2 = (CalendarView) root.findViewById(R.id.calendario2);
         radioGroup1 = (RadioGroup) root.findViewById(R.id.radioGroupHorario1);
-        radioGroup1 = (RadioGroup) root.findViewById(R.id.radioGroupHorario2);
+        radioGroup2 = (RadioGroup) root.findViewById(R.id.radioGroupHorario2);
 
         calendario1.setVisibility(View.INVISIBLE);
 

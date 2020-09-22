@@ -106,6 +106,7 @@
     <string name="RegistryConfirmation_title">Confirmación</string>
     <string name="RegistryConfirmation_tvMessage">Cita Reservada correctamente</string>
     <string name="RegistryConfirmation_btnContinue">Continuar</string>
+    <string name="RegistryConfirmation_tvPhotoToolTip">*Toque la cámara para tomar una foto</string>
 
     <!-- Login password recovery -->
     <string name="passwordRecovery_Title">Recuperar contraseña</string>

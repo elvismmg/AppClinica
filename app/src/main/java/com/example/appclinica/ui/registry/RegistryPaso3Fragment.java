@@ -156,68 +156,69 @@ public class RegistryPaso3Fragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if (requestCode == 100) {
-            Bitmap captureImage = (Bitmap) data.getExtras().get("data");
-            ivPicA.setImageBitmap(captureImage);
-            citaMemory.setImagenEvidenciaA(getByteArray(captureImage));
-        } else if (requestCode == 101) {
-            Bitmap captureImage = (Bitmap) data.getExtras().get("data");
-            ivPicB.setImageBitmap(captureImage);
-            citaMemory.setImagenEvidenciaB(getByteArray(captureImage));
-        } else if (requestCode == 102) {
-            Bitmap captureImage = (Bitmap) data.getExtras().get("data");
-            ivPicC.setImageBitmap(captureImage);
-            citaMemory.setImagenEvidenciaC(getByteArray(captureImage));
-        } else if (requestCode == CODE_MULTIPLE_IMG_GALLERY && resultCode == RESULT_OK) {
-            Uri imageUri = data.getData();
-            ClipData clipData = data.getClipData();
-            Bitmap bitmapA = null;
-            Bitmap bitmapB = null;
-            Bitmap bitmapC = null;
+        if (data != null) {
+            if (requestCode == 100) {
+                Bitmap captureImage = (Bitmap) data.getExtras().get("data");
+                ivPicA.setImageBitmap(captureImage);
+                citaMemory.setImagenEvidenciaA(getByteArray(captureImage));
+            } else if (requestCode == 101) {
+                Bitmap captureImage = (Bitmap) data.getExtras().get("data");
+                ivPicB.setImageBitmap(captureImage);
+                citaMemory.setImagenEvidenciaB(getByteArray(captureImage));
+            } else if (requestCode == 102) {
+                Bitmap captureImage = (Bitmap) data.getExtras().get("data");
+                ivPicC.setImageBitmap(captureImage);
+                citaMemory.setImagenEvidenciaC(getByteArray(captureImage));
+            } else if (requestCode == CODE_MULTIPLE_IMG_GALLERY && resultCode == RESULT_OK) {
+                Uri imageUri = data.getData();
+                ClipData clipData = data.getClipData();
+                Bitmap bitmapA = null;
+                Bitmap bitmapB = null;
+                Bitmap bitmapC = null;
 
-            if (imageUri != null) {
-                try {
-                    bitmapA = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), imageUri);
-                    ivPicA.setImageBitmap(bitmapA);
-                    citaMemory.setImagenEvidenciaA(getByteArray(bitmapA));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-//                ivPicA.setImageURI(imageUri);
-            } else if (clipData != null) {
-
-                if (clipData.getItemCount() >= 1) {
+                if (imageUri != null) {
                     try {
-                        bitmapA = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), clipData.getItemAt(0).getUri());
+                        bitmapA = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), imageUri);
                         ivPicA.setImageBitmap(bitmapA);
                         citaMemory.setImagenEvidenciaA(getByteArray(bitmapA));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                }
-                if (clipData.getItemCount() >= 2) {
-                    //ivPicB.setImageURI(clipData.getItemAt(1).getUri());
-                    try {
-                        bitmapB = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), clipData.getItemAt(1).getUri());
-                        ivPicB.setImageBitmap(bitmapB);
-                        citaMemory.setImagenEvidenciaB(getByteArray(bitmapB));
-                    } catch (IOException e) {
-                        e.printStackTrace();
+//                ivPicA.setImageURI(imageUri);
+                } else if (clipData != null) {
+
+                    if (clipData.getItemCount() >= 1) {
+                        try {
+                            bitmapA = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), clipData.getItemAt(0).getUri());
+                            ivPicA.setImageBitmap(bitmapA);
+                            citaMemory.setImagenEvidenciaA(getByteArray(bitmapA));
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
-                }
-                if (clipData.getItemCount() >= 3) {
-                    //ivPicC.setImageURI(clipData.getItemAt(2).getUri());
-                    try {
-                        bitmapC = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), clipData.getItemAt(2).getUri());
-                        ivPicC.setImageBitmap(bitmapC);
-                        citaMemory.setImagenEvidenciaC(getByteArray(bitmapC));
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                    if (clipData.getItemCount() >= 2) {
+                        //ivPicB.setImageURI(clipData.getItemAt(1).getUri());
+                        try {
+                            bitmapB = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), clipData.getItemAt(1).getUri());
+                            ivPicB.setImageBitmap(bitmapB);
+                            citaMemory.setImagenEvidenciaB(getByteArray(bitmapB));
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    if (clipData.getItemCount() >= 3) {
+                        //ivPicC.setImageURI(clipData.getItemAt(2).getUri());
+                        try {
+                            bitmapC = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), clipData.getItemAt(2).getUri());
+                            ivPicC.setImageBitmap(bitmapC);
+                            citaMemory.setImagenEvidenciaC(getByteArray(bitmapC));
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
             }
         }
-
 
         super.onActivityResult(requestCode, resultCode, data);
     }
