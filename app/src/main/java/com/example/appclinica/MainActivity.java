@@ -1,7 +1,9 @@
 package com.example.appclinica;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -98,8 +100,13 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Gracias por contactarse, enseguida nos comunicamos con usted.", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+//                Snackbar.make(view, "Gracias por contactarse, enseguida nos comunicamos con usted.", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                Uri data = Uri.parse("mailto:contacto@portusalud.com?subject=Contacto");
+                intent.setData(data);
+                startActivity(intent);
             }
         });
 
