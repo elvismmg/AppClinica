@@ -29,8 +29,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
 import com.example.appclinica.R;
+import com.example.appclinica.ui.dao.CentersDAO;
+import com.example.appclinica.ui.dao.DAOException;
 import com.example.appclinica.ui.helpers.Constants;
 import com.example.appclinica.ui.helpers.JsonArrayCustomRequest;
+import com.example.appclinica.ui.models.CenterModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import net.yslibrary.android.keyboardvisibilityevent.util.UIUtil;
@@ -149,12 +152,13 @@ public class LoginFragment extends Fragment {
                                             bundle.putDouble("pacienteAltura", jsonObjectResponse.getDouble("Altura"));
                                             bundle.putString("pacienteTipoSangre", jsonObjectResponse.getString("TipoSangre"));
 
-                                            navController.navigate(R.id.nav_home, bundle);
-                                            openSession(jsonObjectResponse.getString("IdPaciente"));
-
-                                            ((AppCompatActivity) getActivity()).getSupportActionBar().show();
-                                            BottomNavigationView bottomNavView = (BottomNavigationView) getActivity().findViewById(R.id.bottom_nav_view);
-                                            bottomNavView.setVisibility(View.VISIBLE);
+                                            loadCentersToDb(bundle, progress);
+//                                            navController.navigate(R.id.nav_home, bundle);
+//                                            openSession(jsonObjectResponse.getString("IdPaciente"));
+//
+//                                            ((AppCompatActivity) getActivity()).getSupportActionBar().show();
+//                                            BottomNavigationView bottomNavView = (BottomNavigationView) getActivity().findViewById(R.id.bottom_nav_view);
+//                                            bottomNavView.setVisibility(View.VISIBLE);
 
                                             progress.dismiss();
 
@@ -211,4 +215,71 @@ public class LoginFragment extends Fragment {
         editor.commit();
     }
 
+
+    private void loadCentersToDb(final Bundle bundle, final ProgressDialog progressDialog){
+
+        JsonArrayCustomRequest jsonObjReq = new JsonArrayCustomRequest(Request.Method.GET,
+                Constants.WSUrlGetSedes,null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+
+                        if (response.length() > 0) {
+                            try {
+//                                List<CenterModel> centerList = new ArrayList<>();
+                                CentersDAO centersDAO = new CentersDAO(getActivity().getBaseContext());
+                                centersDAO.DeleteAll();
+
+                                for(int i = 0; i < response.length(); i++) {
+                                    JSONObject jsonObjectResponse = response.getJSONObject(i);
+//                                    centerList.add(new CenterModel(
+//                                            jsonObjectResponse.getInt("IdSede"),
+//                                            jsonObjectResponse.getString("Nombre"),
+//                                            jsonObjectResponse.getString("Direccion"),
+//                                            jsonObjectResponse.getString("Distrito"),
+//                                            jsonObjectResponse.getDouble("UbicacionLatitud"),
+//                                            jsonObjectResponse.getDouble("UbicacionLongitud")));
+
+                                    CenterModel centerModel = new CenterModel(
+                                            jsonObjectResponse.getInt("IdSede"),
+                                            jsonObjectResponse.getString("Nombre"),
+                                            jsonObjectResponse.getString("Direccion"),
+                                            jsonObjectResponse.getString("Distrito"),
+                                            jsonObjectResponse.getDouble("UbicacionLatitud"),
+                                            jsonObjectResponse.getDouble("UbicacionLongitud"));
+
+                                    centersDAO.Insert(centerModel);
+                                }
+
+                                navController.navigate(R.id.nav_home, bundle);
+                                openSession(bundle.getString("IdPaciente"));
+                                ((AppCompatActivity) getActivity()).getSupportActionBar().show();
+                                BottomNavigationView bottomNavView = getActivity().findViewById(R.id.bottom_nav_view);
+                                bottomNavView.setVisibility(View.VISIBLE);
+
+                                progressDialog.dismiss();
+
+                            } catch (JSONException | DAOException e) {
+                                e.printStackTrace();
+                                Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                                progressDialog.dismiss();
+                            }
+
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        error.printStackTrace();
+                        Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
+                    }
+                }
+
+        );
+
+        RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
+        requestQueue.add(jsonObjReq);
+    }
 }
