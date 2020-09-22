@@ -104,7 +104,7 @@
 
     <!-- confirmacion de cita -->
     <string name="RegistryConfirmation_title">Confirmación</string>
-    <string name="RegistryConfirmation_tvMessage">Cita Reservada correctamente</string>
+    <string name="RegistryConfirmation_tvMessage">Cita reservada correctamente</string>
     <string name="RegistryConfirmation_btnContinue">Continuar</string>
     <string name="RegistryConfirmation_tvPhotoToolTip">*Toque la cámara para tomar una foto</string>
 
